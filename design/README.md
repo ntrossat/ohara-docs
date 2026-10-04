@@ -1,6 +1,6 @@
 # Design
 
-Everything that defines how UNITED looks and sounds.
+Everything that defines how Ohara looks and sounds.
 
 | Page | What it covers |
 |---|---|
@@ -12,8 +12,8 @@ Everything that defines how UNITED looks and sounds.
 |---|---|
 | [`tokens.css`](tokens.css) | The design tokens as CSS custom properties, ready to import |
 | [`logo.svg`](logo.svg) | The logo mark |
-| [`logo-wordmark.svg`](logo-wordmark.svg) | The logo mark with the UNITED wordmark |
-| [`mockups/`](mockups/) | Source files of the [UNITED Docs UI canvas](https://claude.ai/artifact/PoJSvY99xuGqMwVNbUxZtC) |
+| [`logo-wordmark.svg`](logo-wordmark.svg) | The logo mark with the Ohara wordmark |
+| [`mockups/`](mockups/) | Source files of the [Ohara Docs UI canvas](https://claude.ai/artifact/PoJSvY99xuGqMwVNbUxZtC) |
 
 The mockup files are design components for the canvas editor, so they don't render on their own in a browser.
 

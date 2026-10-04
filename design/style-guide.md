@@ -1,10 +1,10 @@
 # Style guide
 
-The design tokens behind every UNITED screen. They are also available as CSS custom properties in [`tokens.css`](tokens.css).
+The design tokens behind every Ohara screen. They are also available as CSS custom properties in [`tokens.css`](tokens.css).
 
 ## Color
 
-UNITED has one dark theme.
+Ohara has one dark theme.
 
 | Token | Value | Use |
 |---|---|---|

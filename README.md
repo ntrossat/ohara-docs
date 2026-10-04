@@ -1,6 +1,6 @@
-# UNITED Docs
+# Ohara Docs
 
-Documentation for [UNITED](https://github.com/ntrossat/united) — UNIfied Technical Entreprise Documentation.
+Documentation for [Ohara](https://github.com/ntrossat/ohara), one central place for all enterprise knowledge.
 
 **AI-generated, human-controlled.**
 
@@ -24,4 +24,4 @@ Open a pull request. Every change is reviewed before merge.
 
 ## License
 
-[Apache-2.0](https://github.com/ntrossat/united/blob/main/LICENSE)
+[Apache-2.0](https://github.com/ntrossat/ohara/blob/main/LICENSE)

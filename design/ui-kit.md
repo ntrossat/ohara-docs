@@ -1,6 +1,6 @@
 # UI kit
 
-The components that make up UNITED's screens. Values reference the tokens in the [style guide](style-guide.md) and [`tokens.css`](tokens.css). The [mockups](mockups/) show them in context.
+The components that make up Ohara's screens. Values reference the tokens in the [style guide](style-guide.md) and [`tokens.css`](tokens.css). The [mockups](mockups/) show them in context.
 
 ## Components
 
@@ -132,4 +132,4 @@ Same layout as the docs reader content. A Newsreader H1 says what's missing, and
 
 - No root page: "Add an overview page". Create a `README.md` at the root of the repository.
 - Page not found: "This page doesn't exist". It may have been moved or renamed. Link to the overview.
-- Server unreachable: "UNITED can't be reached". Reload the page in a moment.
+- Server unreachable: "Ohara can't be reached". Reload the page in a moment.

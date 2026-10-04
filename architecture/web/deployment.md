@@ -1,13 +1,13 @@
 # Website deployment
 
-UNITED uses two repositories:
+Ohara uses two repositories:
 
 | Repository | Role |
 |---|---|
-| UNITED repository | Application code, including the HTML website |
-| Docs repository | Documentation storage only. Configurable: each company points UNITED to its own repository |
+| Ohara repository | Application code, including the HTML website |
+| Docs repository | Documentation storage only. Configurable: each company points Ohara to its own repository |
 
-The website is built and deployed from the UNITED repository. A merge to `main` in the docs repository triggers a rebuild.
+The website is built and deployed from the Ohara repository. A merge to `main` in the docs repository triggers a rebuild.
 
 ## Configuration
 
@@ -15,21 +15,21 @@ Both sides are set as GitHub Actions variables, so no repository name is hard-co
 
 | Variable | Stored in | Value |
 |---|---|---|
-| `DOCS_REPO` | UNITED repository | Docs repository, e.g. `acme/docs` |
-| `UNITED_REPO` | Docs repository | UNITED repository, e.g. `acme/united` |
+| `DOCS_REPO` | Ohara repository | Docs repository, e.g. `acme/docs` |
+| `OHARA_REPO` | Docs repository | Ohara repository, e.g. `acme/ohara` |
 
 ## Flow
 
 1. A PR is merged to `main` in the docs repository.
-2. The docs repository sends a `repository_dispatch` event (`docs-updated`) to `UNITED_REPO`.
-3. The UNITED repository checks out its own code and `DOCS_REPO`, builds the site, and deploys it.
+2. The docs repository sends a `repository_dispatch` event (`docs-updated`) to `OHARA_REPO`.
+3. The Ohara repository checks out its own code and `DOCS_REPO`, builds the site, and deploys it.
 
-A push to `main` in the UNITED repository also triggers the deploy.
+A push to `main` in the Ohara repository also triggers the deploy.
 
 ## Docs repository: `.github/workflows/notify.yml`
 
 ```yaml
-name: Notify UNITED
+name: Notify Ohara
 on:
   push:
     branches: [main]
@@ -39,14 +39,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          gh api repos/${{ vars.UNITED_REPO }}/dispatches \
+          gh api repos/${{ vars.OHARA_REPO }}/dispatches \
             -f event_type=docs-updated \
             -f "client_payload[sha]=${{ github.sha }}"
         env:
-          GH_TOKEN: ${{ secrets.UNITED_DISPATCH_TOKEN }}
+          GH_TOKEN: ${{ secrets.OHARA_DISPATCH_TOKEN }}
 ```
 
-## UNITED repository: `.github/workflows/deploy-site.yml`
+## Ohara repository: `.github/workflows/deploy-site.yml`
 
 ```yaml
 name: Deploy site
@@ -87,5 +87,5 @@ When both repositories are private, each side needs a token. Use fine-grained pe
 
 | Secret | Stored in | Repository access | Permission |
 |---|---|---|---|
-| `UNITED_DISPATCH_TOKEN` | Docs repository | UNITED repository | Contents: read & write |
-| `DOCS_READ_TOKEN` | UNITED repository | Docs repository | Contents: read |
+| `OHARA_DISPATCH_TOKEN` | Docs repository | Ohara repository | Contents: read & write |
+| `DOCS_READ_TOKEN` | Ohara repository | Docs repository | Contents: read |

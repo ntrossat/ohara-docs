@@ -2,13 +2,13 @@
 
 ## Name
 
-UNITED stands for UNIfied Technical Entreprise Documentation. Write it in capitals: UNITED. In running text, "UNITED" alone is enough; spell out the full name once, where the product is first introduced.
+Write the name "Ohara", with a capital O and the rest in lowercase.
 
 Tagline: **AI-generated, human-controlled.**
 
 ## Logo
 
-The logo is `</>`, the sign of code, because UNITED treats documentation as code.
+The logo is `</>`, the sign of code, because Ohara treats documentation as code.
 
 - The brackets are `--ink` (`#FAF9F5`).
 - The slash is `--clay` (`#D97757`), the only accent color.
@@ -20,7 +20,7 @@ The logo is `</>`, the sign of code, because UNITED treats documentation as code
 | Mark | [`logo.svg`](logo.svg) | Favicon, app icon, small spaces |
 | Mark with wordmark | [`logo-wordmark.svg`](logo-wordmark.svg) | Top bar, sign-in, setup, anything where the name must be read |
 
-The wordmark is "UNITED" in Manrope 600, letter-spacing 0.06em, with 10px between the mark and the word at a 30px mark.
+The wordmark is "Ohara" in Manrope 600, letter-spacing 0.06em, with 10px between the mark and the word at a 30px mark.
 
 ### Logo rules
 
@@ -31,7 +31,7 @@ The wordmark is "UNITED" in Manrope 600, letter-spacing 0.06em, with 10px betwee
 
 ## Colors
 
-UNITED is dark by default, with one warm accent.
+Ohara is dark by default, with one warm accent.
 
 | Name | Value | Role |
 |---|---|---|
@@ -49,7 +49,7 @@ The full palette and its tokens are in the [style guide](style-guide.md#color).
 
 | Typeface | Role |
 |---|---|
-| [Newsreader](https://fonts.google.com/specimen/Newsreader) | Titles and quotes. Light weights give UNITED its editorial voice |
+| [Newsreader](https://fonts.google.com/specimen/Newsreader) | Titles and quotes. Light weights give Ohara its editorial voice |
 | [Manrope](https://fonts.google.com/specimen/Manrope) | Body text and interface |
 | [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) | Code and small labels |
 
@@ -57,7 +57,7 @@ All three are open source (SIL Open Font License).
 
 ## Voice
 
-UNITED speaks like a good senior engineer: clear, calm, and precise.
+Ohara speaks like a good senior engineer: clear, calm, and precise.
 
 - **Plain:** short sentences, common words, active voice.
 - **Direct:** say what happens. A button says "Sign in with GitHub", not "Continue".
@@ -66,6 +66,6 @@ UNITED speaks like a good senior engineer: clear, calm, and precise.
 
 | Instead of | Write |
 |---|---|
-| Oops! Something went wrong. | UNITED couldn't reach GitHub. Reload the page in a moment. |
+| Oops! Something went wrong. | Ohara couldn't reach GitHub. Reload the page in a moment. |
 | Supercharge your docs with AI! | AI keeps your docs up to date. You approve every change. |
 | Submit | Create GitHub App |
