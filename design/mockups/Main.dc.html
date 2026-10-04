@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>UNITED docs reader</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#141413}
+a{color:#e8916f}a:hover{color:#faf9f5}
+</style>
+</helmet>
+<div style="min-height: 1040px; background: #141413; color: #faf9f5; font-family: 'Manrope', system-ui, sans-serif; font-size: 15px; line-height: 1.5">
+
+  <header style="height: 72px; display: flex; align-items: center; gap: 24px; padding: 0 32px; border-bottom: 1px solid #2c2b28; flex-wrap: wrap">
+    <a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; color: #faf9f5">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M10.5 9l-6.5 7 6.5 7M21.5 9l6.5 7-6.5 7" stroke="#faf9f5" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.6 6.5l-5.2 19" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round"></path></svg>
+      <span style="font-weight: 600; font-size: 15px; letter-spacing: 0.06em">UNITED</span>
+    </a>
+    <a href="#" style="display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 14px; border: 1px solid #2c2b28; border-radius: 999px; color: #a6a39a; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 12px">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"></rect><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"></path></svg>
+      acme/handbook
+    </a>
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 14px">
+      <span style="width: 32px; height: 32px; border-radius: 50%; background: #2a2926; color: #faf9f5; display: grid; place-items: center; font-weight: 600; font-size: 13px">A</span>
+      <span style="font-weight: 500">ada</span>
+      <button style="min-height: 36px; padding: 0 16px; border: 1px solid #2c2b28; border-radius: 999px; background: transparent; color: #a6a39a; font: 500 14px 'Manrope', sans-serif; cursor: pointer">Sign out</button>
+    </div>
+  </header>
+
+  <div style="display: flex; flex-wrap: wrap; max-width: 1440px">
+
+    <nav aria-label="Documentation" style="flex: 1 1 260px; max-width: 280px; padding: 32px 16px 40px 20px; border-right: 1px solid #2c2b28; box-sizing: border-box">
+      <a href="#" style="display: block; padding: 8px 12px; color: #faf9f5; text-decoration: none; font-weight: 500">Overview</a>
+
+      <div style="margin-top: 24px; padding: 0 12px 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a">guidelines/</div>
+      <a href="#" style="display: block; padding: 8px 12px; color: #a6a39a; text-decoration: none">Introduction</a>
+      <a href="#" style="display: block; padding: 8px 12px; color: #a6a39a; text-decoration: none">API design</a>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 10px; background: #1c1b19; color: #faf9f5; text-decoration: none; font-weight: 600">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: {{accent}}"></span>Python
+      </a>
+      <a href="#" style="display: block; padding: 8px 12px; color: #a6a39a; text-decoration: none">Security</a>
+
+      <div style="margin-top: 24px; padding: 0 12px 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a">architecture/</div>
+      <a href="#" style="display: block; padding: 8px 12px; color: #a6a39a; text-decoration: none">System overview</a>
+      <a href="#" style="display: block; padding: 8px 12px; color: #a6a39a; text-decoration: none">Decision records</a>
+    </nav>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-wrap: wrap; gap: 64px; padding: 48px 64px 112px; box-sizing: border-box">
+      <article style="flex: 999 1 520px; min-width: 0; max-width: 720px">
+        <div style="display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a">
+          <a href="#" style="color: #a6a39a; text-decoration: none">guidelines</a>
+          <span>/</span>
+          <span style="color: #faf9f5">python</span>
+        </div>
+
+        <h1 style="margin: 20px 0 16px; font-family: 'Newsreader', Georgia, serif; font-size: 60px; line-height: 1.02; font-weight: 300; letter-spacing: -0.02em">Python</h1>
+        <p style="margin: 0 0 40px; font-size: 19px; line-height: 1.6; color: #a6a39a">How we write, test, and ship Python services at Acme.</p>
+
+        <h2 id="dependencies" style="margin: 0 0 14px; font-family: 'Newsreader', Georgia, serif; font-size: 32px; line-height: 1.1; font-weight: 400; letter-spacing: -0.015em">Dependencies</h2>
+        <p style="margin: 0 0 20px; font-size: 17px; line-height: 1.75; color: #dcd9d0">Use <code style="font-family: 'JetBrains Mono', monospace; font-size: 14px; background: #1c1b19; border: 1px solid #2c2b28; padding: 1px 6px; border-radius: 6px">uv</code> for dependencies and pin every version in <code style="font-family: 'JetBrains Mono', monospace; font-size: 14px; background: #1c1b19; border: 1px solid #2c2b28; padding: 1px 6px; border-radius: 6px">uv.lock</code>.</p>
+
+        <div style="margin: 0 0 40px; background: #1c1b19; border: 1px solid #2c2b28; border-radius: 14px; overflow: hidden">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #2c2b28; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a">
+            <span style="display: flex; align-items: center; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{accent}}"></span>python</span>
+            <button style="min-height: 28px; border: 0; background: none; color: #a6a39a; font: 400 12px 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 6px; cursor: pointer">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5"></rect><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"></path></svg>copy
+            </button>
+          </div>
+          <pre style="margin: 0; padding: 20px 24px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; color: #faf9f5; overflow-x: auto"><span style="color: {{accent}}">def</span> greet(name: str) -&gt; str:
+    <span style="color: #a6a39a"># Every public function is typed</span>
+    <span style="color: {{accent}}">return</span> f"Hello, {name}"</pre>
+        </div>
+
+        <h2 id="checklist" style="margin: 0 0 14px; font-family: 'Newsreader', Georgia, serif; font-size: 32px; line-height: 1.1; font-weight: 400; letter-spacing: -0.015em">Before you open a PR</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin: 0 0 40px; font-size: 17px; color: #dcd9d0">
+          <label style="display: flex; gap: 12px; align-items: center"><input type="checkbox" checked disabled style="width: 18px; height: 18px; accent-color: {{accent}}"> Type hints on public functions</label>
+          <label style="display: flex; gap: 12px; align-items: center"><input type="checkbox" disabled style="width: 18px; height: 18px"> Docstrings on modules</label>
+        </div>
+
+        <blockquote style="margin: 0 0 56px; padding: 4px 0; font-family: 'Newsreader', Georgia, serif; font-style: italic; font-weight: 300; font-size: 24px; line-height: 1.4; color: #faf9f5">Guidelines are defaults, not laws. If you need to break one, say why in the PR.</blockquote>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid #2c2b28">
+          <a href="#" style="display: flex; align-items: center; gap: 8px; min-height: 44px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a; text-decoration: none">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M11 2.5l2.5 2.5L6 12.5H3.5V10z"></path></svg>
+            suggest a change on GitHub
+          </a>
+          <div style="display: flex; gap: 12px">
+            <a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; min-width: 180px; border: 1px solid #2c2b28; border-radius: 14px; text-decoration: none">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a">previous</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 20px; color: #faf9f5">API design</span>
+            </a>
+            <a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; min-width: 180px; border: 1px solid #2c2b28; border-radius: 14px; text-decoration: none; text-align: right">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a">next</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 20px; color: #faf9f5">Security</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <aside style="flex: 1 1 200px; max-width: 220px; padding-top: 4px">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a; margin-bottom: 12px">on this page</div>
+        <div style="display: flex; flex-direction: column; border-left: 1px solid #2c2b28">
+          <a href="#dependencies" style="padding: 6px 0 6px 14px; margin-left: -1px; border-left: 1px solid {{accent}}; color: #faf9f5; font-size: 14px; text-decoration: none">Dependencies</a>
+          <a href="#checklist" style="padding: 6px 0 6px 14px; color: #a6a39a; font-size: 14px; text-decoration: none">Before you open a PR</a>
+        </div>
+      </aside>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#d97757","options":["#d97757","#e8875a","#f0a35e"]},"$preview":{"width":1440,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#d97757' };
+  }
+}
+</script>
+</body>
+</html>

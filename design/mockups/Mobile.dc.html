@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>UNITED docs reader on a phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#141413}
+a{color:#e8916f}a:hover{color:#faf9f5}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; overflow: hidden; background: #141413; color: #faf9f5; font-family: 'Manrope', system-ui, sans-serif; font-size: 15px; line-height: 1.5">
+  <header style="height: 64px; display: flex; align-items: center; gap: 10px; padding: 0 12px 0 8px; border-bottom: 1px solid #2c2b28">
+    <button aria-label="Open menu" style="width: 44px; height: 44px; border: 0; background: none; color: #faf9f5; display: grid; place-items: center; cursor: pointer">
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 7h14M3 13h14"></path></svg>
+    </button>
+    <a href="#" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #faf9f5">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M10.5 9l-6.5 7 6.5 7M21.5 9l6.5 7-6.5 7" stroke="#faf9f5" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.6 6.5l-5.2 19" stroke="#d97757" stroke-width="2.4" stroke-linecap="round"></path></svg>
+      <span style="font-weight: 600; font-size: 14px; letter-spacing: 0.06em">UNITED</span>
+    </a>
+    <span style="margin-left: auto; width: 32px; height: 32px; border-radius: 50%; background: #2a2926; display: grid; place-items: center; font-weight: 600; font-size: 13px">A</span>
+  </header>
+
+  <div style="padding: 28px 20px">
+    <div style="display: flex; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a">
+      <span>guidelines</span><span>/</span><span style="color: #faf9f5">python</span>
+    </div>
+    <h1 style="margin: 14px 0 10px; font-family: 'Newsreader', Georgia, serif; font-size: 44px; line-height: 1.02; font-weight: 300; letter-spacing: -0.02em">Python</h1>
+    <p style="margin: 0 0 28px; font-size: 17px; line-height: 1.55; color: #a6a39a">How we write, test, and ship Python services at Acme.</p>
+
+    <h2 style="margin: 0 0 12px; font-family: 'Newsreader', Georgia, serif; font-size: 27px; line-height: 1.1; font-weight: 400; letter-spacing: -0.015em">Dependencies</h2>
+    <p style="margin: 0 0 18px; font-size: 16px; line-height: 1.7; color: #dcd9d0">Use <code style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #1c1b19; border: 1px solid #2c2b28; padding: 1px 5px; border-radius: 6px">uv</code> for dependencies and pin every version in <code style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #1c1b19; border: 1px solid #2c2b28; padding: 1px 5px; border-radius: 6px">uv.lock</code>.</p>
+
+    <div style="margin: 0 0 28px; background: #1c1b19; border: 1px solid #2c2b28; border-radius: 14px; overflow: hidden">
+      <div style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid #2c2b28; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a6a39a"><span style="width: 8px; height: 8px; border-radius: 50%; background: #d97757"></span>python</div>
+      <pre style="margin: 0; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; color: #faf9f5; overflow-x: auto"><span style="color: #d97757">def</span> greet(name: str) -&gt; str:
+    <span style="color: #d97757">return</span> f"Hello, {name}"</pre>
+    </div>
+
+    <h2 style="margin: 0 0 12px; font-family: 'Newsreader', Georgia, serif; font-size: 27px; line-height: 1.1; font-weight: 400; letter-spacing: -0.015em">Before you open a PR</h2>
+    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 16px; color: #dcd9d0">
+      <label style="display: flex; gap: 12px; align-items: center"><input type="checkbox" checked disabled style="width: 18px; height: 18px; accent-color: #d97757"> Type hints on public functions</label>
+      <label style="display: flex; gap: 12px; align-items: center"><input type="checkbox" disabled style="width: 18px; height: 18px"> Docstrings on modules</label>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

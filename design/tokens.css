@@ -1,0 +1,77 @@
+/* UNITED design tokens. See style-guide.md. */
+
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  color-scheme: dark;
+
+  /* Color */
+  --bg: #141413;
+  --bg-2: #1c1b19;
+  --surface-3: #2a2926;
+  --line: #2c2b28;
+  --ink: #faf9f5;
+  --text: #dcd9d0;
+  --muted: #a6a39a;
+  --clay: #d97757;
+  --link: #e8916f;
+  --on-clay: #141413;
+
+  /* Type */
+  --serif: "Newsreader", Georgia, serif;
+  --sans: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --size-display: 72px;
+  --size-h1: 60px;
+  --size-h2: 32px;
+  --size-h3: 20px;
+  --size-lead: 19px;
+  --size-body: 17px;
+  --size-ui: 15px;
+  --size-quote: 24px;
+  --size-code: 14px;
+  --size-label: 12px;
+
+  /* Spacing (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-18: 72px;
+  --space-24: 96px;
+
+  /* Shapes */
+  --radius-pill: 999px;
+  --radius-panel: 14px;
+  --radius-item: 10px;
+  --radius-code: 6px;
+  --border: 1px solid var(--line);
+
+  /* Layout */
+  --topbar-height: 72px;
+  --menu-width: 280px;
+  --content-width: 720px;
+  --toc-width: 220px;
+  --page-max: 1440px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 200ms;
+}
+
+@media (max-width: 860px) {
+  :root {
+    --size-h1: 44px;
+    --size-h2: 27px;
+    --size-body: 16px;
+    --topbar-height: 64px;
+  }
+}
