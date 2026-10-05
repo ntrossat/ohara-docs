@@ -16,6 +16,7 @@ Ohara has one dark theme.
 | `--text` | `#DCD9D0` | Body text |
 | `--muted` | `#A6A39A` | Secondary text, labels, inactive menu items |
 | `--clay` | `#D97757` | The accent: buttons, current state, code keywords |
+| `--clay-hover` | `#E2876A` | Primary buttons on hover |
 | `--link` | `#E8916F` | Links in body text |
 | `--on-clay` | `#141413` | Text and icons on a clay fill |
 
