@@ -16,7 +16,7 @@ A pill that says exactly what it does.
 
 - Height 48px (primary), 36px (secondary in the top bar). Horizontal padding 24px and 16px.
 - Radius `--radius-pill`. An optional 18px icon sits 10–12px before the label.
-- Hover: primary lightens to `#E2876A`; secondary and text turn `--ink`.
+- Hover: primary turns `--clay-hover`; secondary and text turn `--ink`.
 - Disabled: 60% opacity, `cursor: progress` while working ("Opening GitHub…").
 
 ```css

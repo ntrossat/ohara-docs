@@ -30,7 +30,7 @@ Plain Markdown files, no config file.
 |---|---|
 | The folder tree is the menu | `guidelines/api.md` shows as "Api" under "Guidelines" |
 | A page's title is its front matter `title`, then its first `# ` heading, then its file name | `# API guidelines` titles the page "API guidelines" |
-| A folder's `README.md` or `index.md` is the folder's page, and its title names the folder | `design/README.md` with `# Design` |
+| A folder's `index.md` or `README.md` is the folder's page, and its title names the folder. With both, `index.md` wins | `design/README.md` with `# Design` |
 | A folder without an index page is named after the folder | `architecture/` shows as "Architecture" |
 | The root `README.md` is the overview, the home page | |
 | Files and folders starting with `.` are hidden | `.github/` |
@@ -64,7 +64,9 @@ Access is checked again every 5 minutes. Remove someone from the repository on G
 
 A merge to the default branch updates the website within seconds. GitHub notifies Ohara, and Ohara downloads the new version.
 
-GitHub can only notify an address it can reach over the internet. When `OHARA_URL` is `localhost` or a private address, Ohara updates the docs each time it starts instead.
+Changes to the repository's settings are picked up the same way. Make the repository public or private and the website follows.
+
+GitHub can only notify an address it can reach over the internet. When `OHARA_URL` is `localhost` or a private address, Ohara updates the docs each time it starts instead. See [Website deployment](../architecture/web/deployment.md#update-the-docs) for the details.
 
 ## Use another repository
 
