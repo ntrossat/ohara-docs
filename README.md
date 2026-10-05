@@ -1,6 +1,6 @@
 # Ohara Docs
 
-Documentation for [Ohara](https://github.com/ntrossat/ohara), one central place for all enterprise knowledge.
+Documentation for [Ohara](https://github.com/ntrossat/ohara): one central place for all enterprise knowledge.
 
 **AI-generated, human-controlled.**
 

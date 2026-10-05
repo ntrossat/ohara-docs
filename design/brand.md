@@ -2,9 +2,11 @@
 
 ## Name
 
-Write the name "Ohara", with a capital O and the rest in lowercase.
+**Ohara**: one central place for all enterprise knowledge. Write it with one capital: Ohara.
 
-Tagline: **AI-generated, human-controlled.**
+Tagline: **One central place for all enterprise knowledge.**
+
+Principle: **AI-generated, human-controlled.**
 
 ## Logo
 
