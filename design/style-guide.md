@@ -83,11 +83,11 @@ A 4px base. Use these steps: 4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 56, 64, 72, 9
 
 | Region | Width |
 |---|---|
-| Top bar | full width, 72px tall (64px on a phone) |
+| Top bar | full width, 72px tall (64px on a phone). Its logo and account line up with the page frame |
 | Menu | 280px |
 | Content | up to 720px |
-| On this page | 220px |
-| Max page width | 1440px |
+| On this page | 220px, 64px after the content. Hidden under 1280px |
+| Page frame | up to 1440px, centered in the window |
 
 Under 860px, the menu moves behind a button in the top bar and "On this page" is hidden.
 

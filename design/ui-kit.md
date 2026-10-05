@@ -44,15 +44,30 @@ Shows which repository the docs come from.
 - Label above it: Manrope 14px 600, 8px gap.
 - Focus: `--clay` border.
 
+### Menu search
+
+- Sits at the top of the menu. Height 40px, padding 0 12px, `--bg-2` fill, `--border`, radius `--radius-item`.
+- A 15px search icon, then the input in Manrope 14px. Placeholder "Search docs" in `--muted`.
+- A `⌘K` hint (`Ctrl K` off Mac) in JetBrains Mono 11px, hidden on a phone. The shortcut focuses the field, Escape clears it.
+- Typing filters the menu by page title and keeps the folders that lead to each match.
+
 ### Menu item
 
 | State | Style |
 |---|---|
-| Default | `--muted`, Manrope 15px, padding 8px 12px |
+| Default | `--muted`, Manrope 14px, padding 8px 12px |
 | Hover | `--ink` |
-| Current | `--bg-2` background, `--ink`, weight 600, radius `--radius-item`, a 7px clay dot 10px before the title |
+| Current | `--bg-2` background, `--ink`, weight 600, radius `--radius-item` |
+| Current, nested | Same, with a 2px `--clay` bar over the guide line and square left corners |
 
-Folder headings are JetBrains Mono 12px `--muted`, written as the folder path (`guidelines/`), with 24px above.
+### Menu folder
+
+- A row with a 12px chevron in a 28px column, then the folder's title in Manrope 14px 600, `--ink`. The title comes from the folder's index page, or from the folder name in sentence case.
+- Clicking a folder without an index page folds or unfolds it. A folder with an index page links to it: opening the page unfolds the folder, clicking it again while there folds it. The chevron always folds or unfolds.
+- The chevron points down when open and turns -90° when folded.
+- Children hang off a 1px `--line` guide line under the chevron, 18px in from the row. Nested pages are padded 14px from the line.
+
+On a phone, every menu row is at least 44px tall.
 
 ### Breadcrumb
 
@@ -110,11 +125,11 @@ See the [brand guidelines](brand.md#logo). In the top bar the mark is 30px with 
 | Region | Content |
 |---|---|
 | Top bar | Logo, repository chip, then avatar, login and "Sign out" on the right. 72px tall, `--border` below |
-| Menu | "Overview", then one group per folder. 280px, `--border` on the right |
+| Menu | Search, "Overview", then one foldable group per folder. 280px, `--border` on the right |
 | Content | Breadcrumb, H1, lead, page body, then "suggest a change on GitHub" and previous and next page links. Up to 720px, padding 48px 64px |
 | On this page | One link per H2. 220px |
 
-On a phone the menu opens from a button in the top bar and "On this page" is hidden. Mockups: [`Main.dc.html`](mockups/Main.dc.html), [`Mobile.dc.html`](mockups/Mobile.dc.html).
+On a phone the menu opens from a button in the top bar, covers the page and stops it from scrolling, and "On this page" is hidden. Mockups: [`Main.dc.html`](mockups/Main.dc.html), [`Mobile.dc.html`](mockups/Mobile.dc.html).
 
 ### Sign in
 

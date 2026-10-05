@@ -46,7 +46,7 @@ Every instance creates its own app. GitHub App names are unique across all of Gi
    - creates a session and sets the `ohara_session` cookie (HttpOnly, SameSite=Lax, 30 days);
    - returns the user to the page they came from. Only paths on the same site are accepted.
 
-Sessions are kept in memory. Restarting Ohara signs everyone out.
+Sessions are saved in `sessions.json` in the data volume, readable only by the server, so restarting Ohara keeps everyone signed in.
 
 ## Access check
 
