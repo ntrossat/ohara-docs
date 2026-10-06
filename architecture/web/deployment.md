@@ -67,6 +67,8 @@ A `repository` event, sent when the repository's settings change, triggers the s
 
 A `push` to the default branch of any other repository the app is installed on flags the pages that cover the changed code. See [Freshness](mcp-server.md#freshness).
 
+A `pull_request` event, sent when a pull request in another repository closes, merges or closes the docs pull request of the same branch. See [Merge with the code](mcp-server.md#merge-with-the-code).
+
 Ohara also updates the docs each time it starts. When `OHARA_URL` is `localhost` or a private address, the app has no webhook, so a restart is the only way to update and code changes are not flagged.
 
 ## Update Ohara
@@ -82,6 +84,8 @@ The data volume is kept: settings, sessions, MCP sign-ins, and docs survive the 
 
 Instances set up before Ohara could propose changes have a read-only GitHub App. To enable proposals, grant **Contents** and **Pull requests** write permissions in the app settings on GitHub, then accept the new permissions on the installation.
 
+Instances set up before Ohara could merge docs with code are not subscribed to pull request events. To enable it, check **Pull request** under **Subscribe to events** in the app settings on GitHub. See [Merge docs with code](../../documentation/merge-with-code.md#enable-it).
+
 ## API
 
 The website is a React app that reads everything from the API. The docs routes and `/mcp` follow the [access check](authentication.md#access-check).
@@ -94,6 +98,6 @@ The website is a React app that reads everything from the API. The docs routes a
 | `GET /api/files/*` | Images and other files from the docs repository |
 | `/api/setup/*` | GitHub App creation and installation. Locked once setup is done |
 | `/api/auth/*` | Sign-in and sign-out. See [Authentication](authentication.md) |
-| `POST /api/github/webhook` | GitHub events that update the docs and flag code changes |
+| `POST /api/github/webhook` | GitHub events that update the docs, flag code changes, and merge docs with code |
 | `/mcp` | The [MCP server](mcp-server.md) |
 | `/.well-known/*`, `/register`, `/authorize`, `/token`, `/revoke` | OAuth for MCP clients. See [MCP sign-in](authentication.md#mcp-sign-in) |

@@ -12,7 +12,7 @@ Ohara signs users in with GitHub and mirrors the docs repository's access rights
 | Public | Open to everyone, no sign-in |
 | Private | Sign-in required. Only users who can read the repository on GitHub get access |
 
-One GitHub App handles sign-in, access to the docs repository, the webhooks that trigger rebuilds and flag code changes, and the pull requests that MCP clients propose.
+One GitHub App handles sign-in, access to the docs repository, the webhooks that trigger rebuilds, flag code changes, and merge docs with code, and the pull requests that MCP clients propose.
 
 ## Configuration
 
@@ -32,7 +32,7 @@ Everything else is created during setup and saved in `ohara.db` in the data volu
 
 Setup runs once, from the setup page on first launch.
 
-1. **Create the app.** Ohara sends GitHub a manifest with the app's callback URLs, webhook, events (`push`, `repository`), and permissions (`contents: write`, `pull_requests: write`, `metadata: read`). The admin reviews it on GitHub and confirms.
+1. **Create the app.** Ohara sends GitHub a manifest with the app's callback URLs, webhook, events (`push`, `pull_request`, `repository`), and permissions (`contents: write`, `pull_requests: write`, `metadata: read`). The admin reviews it on GitHub and confirms.
 2. **Save the credentials.** GitHub redirects to `/api/setup/callback`. Ohara checks the `state` value it sent, then exchanges the code for the app's credentials: App ID, slug, client ID, client secret, webhook secret, and private key. GitHub returns them only once.
 3. **Install the app.** The admin installs the app on the docs repository, and only that one. GitHub redirects to `/api/setup/installed`. Ohara checks that the installation belongs to its app, saves the repository, and downloads the first snapshot of the docs.
 
@@ -101,7 +101,7 @@ Signing out deletes the session and clears the cookie.
 
 | Token | Belongs to | Used for |
 |---|---|---|
-| Installation token, from the app's private key | The app | Downloading the docs, reading repository details and changed files, and opening pull requests |
+| Installation token, from the app's private key | The app | Downloading the docs, reading repository details and changed files, and opening, merging, and closing pull requests |
 | User access token, from sign-in | Each user | Checking that the user can read, or write to, the docs repository. Never leaves the server |
 | Ohara access and refresh tokens (`oha_`) | Each MCP client grant | Calling `/mcp`. Point to a session, so its GitHub token is used for checks |
 | GitHub token sent as `Authorization: Bearer` | CI and headless agents | Calling `/mcp`, and the same checks as a user token |

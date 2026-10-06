@@ -17,9 +17,9 @@ Access mirrors the website: a public docs repository is open to everyone, a priv
 |---|---|---|
 | `list_pages` | The menu of the current snapshot | Each page's path and title, with its folders, e.g. "Architecture / Web / Authentication" |
 | `search` | The full-text index | Up to 20 pages containing every word of the query, with a snippet and stale reasons. Titles weigh more than text |
-| `read_page` | One page | Title, Markdown, owner, verified date, and stale reasons |
+| `read_page` | One page | Title, Markdown, owner, verified date, covered code, and stale reasons |
 | `stale_pages` | Every page | The stale pages and their reasons |
-| `propose_change` | The caller's write access | The pull request URL |
+| `propose_change` | The caller's write access | The pull request URLs |
 
 The search index is an SQLite FTS5 table in `ohara.db`, rebuilt on each sync and on startup, so search works even when GitHub is unreachable.
 
@@ -42,12 +42,25 @@ Each flag holds a hash of the page's file. When the page changes, the hash no lo
 1. Ohara checks that the caller is signed in and can write to the docs repository.
 2. It maps each path to a file: the existing file of that page, or a new `path.md`. Paths with empty parts or parts starting with `.` are refused.
 3. It sets `verified` to today in each page's front matter, keeping the rest as written.
-4. With the installation token, it commits the files on a docs branch:
-   - `<project>/<branch>` when the project and branch are given, such as `api/feature-billing`. Characters other than letters, digits, `_` and `-` become `-`. If that branch has an open pull request, the commits are added to it with a comment that holds the title and description, and Ohara returns that pull request.
-   - Otherwise `ohara/<slug>-<random>`.
+4. When the project and branch are given, it sorts the files with the docs snapshot's `CODEOWNERS` file (`.github/CODEOWNERS`, `CODEOWNERS`, or `docs/CODEOWNERS`, the first found). The last matching rule decides: a file with owners needs review. Without a `CODEOWNERS` file, every file needs review.
+5. With the installation token, it commits the files on docs branches, each with its own pull request:
+   - `<project>/<branch>` for the files that need no review, such as `api/feature-billing`. Characters other than letters, digits, `_` and `-` become `-`. The pull request body says it merges with the code branch.
+   - `<project>/<branch>-review` for the files that need review.
+   - `ohara/<slug>-<random>` for every file when no project and branch are given.
+
+   If a branch has an open pull request, the commits are added to it with a comment that holds the title and description, and Ohara returns that pull request.
 
    A new branch starts from the default branch. A branch left from a closed pull request is reset to the default branch first, so it holds only the new change. Ohara then opens a pull request whose body ends with "Proposed through Ohara by @login".
 
-Each code branch therefore gets one docs pull request, however many commits it has.
+Each code branch therefore gets at most two docs pull requests, however many commits it has. Ohara returns their links, one per line, with "(merges with the code branch)" after the automatic one.
 
 If GitHub refuses with `403`, the app lacks write permissions. An admin grants **Contents** and **Pull requests** write permissions in the app settings, then accepts them on the installation.
+
+## Merge with the code
+
+When a pull request in a code repository closes, GitHub sends a `pull_request` event. If it targeted the repository's default branch, Ohara finds the open docs pull request on `<repository name>/<head branch>`, with the same sanitizing as proposals:
+
+- **Merged:** Ohara lists the docs pull request's files and checks them against `CODEOWNERS` again. If none needs review, it squash-merges the pull request at the commit it checked. Otherwise, or if GitHub refuses the merge, it leaves a comment that explains why.
+- **Closed without merging:** Ohara comments with the code pull request's link and closes the docs pull request.
+
+The `-review` pull request is never merged or closed by Ohara. See [Merge docs with code](../../documentation/merge-with-code.md) for the team setup.

@@ -25,7 +25,7 @@ Setup runs once, from the setup page Ohara shows on first launch.
 
 4. **Done.** Ohara downloads the repository's default branch and opens the website.
 
-The app asks for read access to metadata and write access to contents and pull requests. Ohara only writes to the docs repository to open the pull requests that coding assistants propose, each on its own `ohara/…` branch. It never pushes to the default branch: a human merges every change.
+The app asks for read access to metadata and write access to contents and pull requests. Ohara only writes to the docs repository to open the pull requests that coding assistants propose, and to merge or close the ones tied to a code branch when that code merges or closes. It never pushes to the default branch directly. Folders listed in a `CODEOWNERS` file always need a human review, see [Merge docs with code](merge-with-code.md).
 
 ## Lay out the repository
 
