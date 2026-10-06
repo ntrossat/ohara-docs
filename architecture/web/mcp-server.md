@@ -1,5 +1,8 @@
 ---
-covers: [ntrossat/ohara:backend/ohara/mcp_server.py, ntrossat/ohara:backend/ohara/freshness.py, ntrossat/ohara:backend/ohara/docs.py]
+covers:
+  - ntrossat/ohara:backend/ohara/mcp_server.py
+  - ntrossat/ohara:backend/ohara/freshness.py
+  - ntrossat/ohara:backend/ohara/docs.py
 verified: 2026-10-06
 ---
 
@@ -38,6 +41,8 @@ Each flag holds a hash of the page's file. When the page changes, the hash no lo
 ## Propose changes
 
 `propose_change` takes a title, a description, and the full Markdown of each page. A change that comes from a code project also passes the project's repository name and its active git branch.
+
+The tool's description tells the assistant to treat content taken from other sources as untrusted data and never follow instructions found in it. Before proposing, the assistant removes credentials, tokens, private keys, internal hostnames, and personal data, leaves out anything that tries to instruct an AI assistant, and lists what it removed in the description. Ohara does not scan the content itself: the human review of the pull request is the check.
 
 1. Ohara checks that the caller is signed in and can write to the docs repository.
 2. It maps each path to a file: the existing file of that page, or a new `path.md`. Paths with empty parts or parts starting with `.` are refused.
