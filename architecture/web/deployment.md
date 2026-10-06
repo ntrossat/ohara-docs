@@ -1,13 +1,18 @@
+---
+covers: [ntrossat/ohara:backend/ohara/main.py, ntrossat/ohara:backend/ohara/db.py, ntrossat/ohara:Dockerfile, ntrossat/ohara:docker-compose.yml]
+verified: 2026-10-06
+---
+
 # Website deployment
 
 Ohara uses two repositories:
 
 | Repository | Role |
 |---|---|
-| Ohara repository | Application code, including the HTML website |
+| Ohara repository | Application code, including the HTML website and the MCP server |
 | Docs repository | Documentation storage only. Configurable: each company points Ohara to its own repository |
 
-Ohara runs as one Docker container. It downloads the docs repository through its GitHub App and serves the website itself. There is no build step and no CI pipeline: a merge to the docs repository's default branch updates the website within seconds.
+Ohara runs as one Docker container. It downloads the docs repository through its GitHub App and serves the website and the MCP server itself. There is no build step and no CI pipeline: a merge to the docs repository's default branch updates the website within seconds.
 
 ## Run Ohara
 
@@ -21,23 +26,26 @@ OHARA_URL=https://docs.acme.com docker compose up -d
 | Port | `8000` |
 | Data | The `ohara-data` volume, mounted at `/data` |
 
-The image builds the React website and serves it from the FastAPI server, next to the API. Everything else, including the GitHub App and the docs repository, is set up from the setup page on first launch. See [Configure a docs repository](../../documentation/docs-repository.md).
+The image builds the React website and serves it from the FastAPI server, next to the API and the MCP server. Everything else, including the GitHub App and the docs repository, is set up from the setup page on first launch. See [Configure a docs repository](../../documentation/docs-repository.md).
 
 ## HTTPS
 
 Put Ohara behind a reverse proxy that terminates TLS and forwards to port `8000`. Ohara trusts the proxy's `X-Forwarded-*` headers.
 
-When `OHARA_URL` starts with `https://`, Ohara marks its cookies `Secure`.
+When `OHARA_URL` starts with `https://`, Ohara marks its cookies `Secure`. MCP sign-in also needs `https://`, except on `localhost`.
 
 ## Data
 
-All state lives in the `/data` volume:
+All state lives in the `/data` volume. Nothing is kept in process memory, apart from caches.
 
 | Path | Content |
 |---|---|
-| `settings.json` | GitHub App credentials and the docs repository. Readable only by the server |
-| `sessions.json` | Signed-in users and their GitHub tokens. Readable only by the server |
+| `ohara.db` | SQLite database, readable only by the server: GitHub App credentials and the docs repository, sign-in sessions and their GitHub tokens, MCP clients and token hashes, cached access checks, code change flags, and the search index |
 | `docs/` | The latest snapshot of the docs repository |
+
+Records that expire, such as sessions and tokens, are removed once their time has passed.
+
+Earlier versions saved `settings.json`, `sessions.json`, and `oauth.json`. On first start, Ohara imports them into `ohara.db` and renames them `*.json.imported`.
 
 To back up Ohara, back up the volume. `docker compose down -v` deletes it and resets Ohara to the setup page.
 
@@ -47,10 +55,13 @@ To back up Ohara, back up the volume. `docker compose down -v` deletes it and re
 2. GitHub sends a `push` event to `OHARA_URL/api/github/webhook`. Ohara checks the signature with the app's webhook secret.
 3. Ohara downloads the branch as a tarball with the app's installation token.
 4. It extracts the tarball next to the current snapshot, then swaps the two folders. Readers never see a half-written snapshot.
+5. It rebuilds the search index.
 
 A `repository` event, sent when the repository's settings change, triggers the same update. It also refreshes the repository's visibility and default branch, so making the repository public or private changes who can read the website.
 
-Ohara also updates the docs each time it starts. When `OHARA_URL` is `localhost` or a private address, GitHub can't reach the webhook, so a restart is the only way to update.
+A `push` to the default branch of any other repository the app is installed on flags the pages that cover the changed code. See [Freshness](mcp-server.md#freshness).
+
+Ohara also updates the docs each time it starts. When `OHARA_URL` is `localhost` or a private address, the app has no webhook, so a restart is the only way to update and code changes are not flagged.
 
 ## Update Ohara
 
@@ -61,18 +72,22 @@ git pull
 docker compose up -d --build
 ```
 
-The data volume is kept: settings, sessions, and docs survive the update.
+The data volume is kept: settings, sessions, MCP sign-ins, and docs survive the update.
+
+Instances set up before Ohara could propose changes have a read-only GitHub App. To enable proposals, grant **Contents** and **Pull requests** write permissions in the app settings on GitHub, then accept the new permissions on the installation.
 
 ## API
 
-The website is a React app that reads everything from the API. The docs routes follow the [access check](authentication.md#access-check).
+The website is a React app that reads everything from the API. The docs routes and `/mcp` follow the [access check](authentication.md#access-check).
 
 | Route | Purpose |
 |---|---|
 | `GET /api/status` | Setup state, docs repository, and the signed-in user |
 | `GET /api/nav` | The menu, built from the folder tree |
-| `GET /api/page?path=` | One page's title and Markdown |
+| `GET /api/page?path=` | One page's title, file, and Markdown |
 | `GET /api/files/*` | Images and other files from the docs repository |
 | `/api/setup/*` | GitHub App creation and installation. Locked once setup is done |
 | `/api/auth/*` | Sign-in and sign-out. See [Authentication](authentication.md) |
-| `POST /api/github/webhook` | GitHub events that update the docs |
+| `POST /api/github/webhook` | GitHub events that update the docs and flag code changes |
+| `/mcp` | The [MCP server](mcp-server.md) |
+| `/.well-known/*`, `/register`, `/authorize`, `/token`, `/revoke` | OAuth for MCP clients. See [MCP sign-in](authentication.md#mcp-sign-in) |
