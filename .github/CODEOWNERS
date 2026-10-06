@@ -1,0 +1,3 @@
+# Folders that need a review. Ohara merges docs pages outside them with the code change that updated them.
+/design/      @ntrossat
+/guidelines/  @ntrossat
