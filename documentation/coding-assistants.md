@@ -20,6 +20,8 @@ Any MCP client that supports the Streamable HTTP transport works the same way.
 | Public | None to read. Sign in to propose changes |
 | Private | On first use, the assistant opens a GitHub sign-in in the browser. Only people who can read the repository get access |
 
+After GitHub sign-in, Ohara names the assistant and the address it returns to, and asks you to connect it. Connect only an assistant you started yourself: a sign-in link from someone else would give them your access.
+
 For CI and headless agents, send a GitHub token instead of signing in:
 
 ```bash

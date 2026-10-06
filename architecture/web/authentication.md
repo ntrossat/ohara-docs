@@ -60,8 +60,11 @@ MCP clients sign in through OAuth. Ohara is the authorization server, and GitHub
 
 1. The client finds the endpoints at `/.well-known/oauth-protected-resource/mcp` and `/.well-known/oauth-authorization-server`, then registers itself at `/register`.
 2. The client sends the user to `/authorize`. Ohara saves the pending request (10 minutes) and redirects to `/api/auth/login?mcp=…`.
-3. The user signs in with GitHub as above. The callback creates a session but sets no cookie. If the user can read the docs repository, it redirects to the client with a one-time code. Otherwise it returns `access_denied`.
-4. The client exchanges the code at `/token` and gets an Ohara access token (1 hour) and refresh token (30 days), both starting with `oha_`.
+3. The user signs in with GitHub as above. The callback creates a session but sets no website cookie. If the user can't read the docs repository, it returns `access_denied` to the client.
+4. Otherwise the callback sets a short-lived `ohara_consent` cookie (HttpOnly, SameSite=Lax, 10 minutes) and opens the consent page at `/oauth/consent`. The page names the client, the address it returns to, and the signed-in login. **Connect** redirects to the client with a one-time code, and **Cancel** returns `access_denied`. The page answers once, through `POST /api/auth/consent`.
+5. The client exchanges the code at `/token` and gets an Ohara access token (1 hour) and refresh token (30 days), both starting with `oha_`.
+
+Registration is open, and GitHub skips its own screen for users who already authorized the app. The consent page stops a link from someone else from silently handing them a token: the consent cookie only exists in the browser that signed in, and SameSite keeps other sites from answering for it.
 
 Each grant is backed by its own session, so the GitHub token stays on the server and access is re-checked like on the website. Revoking a token at `/revoke` ends its session. Ohara stores only hashes of its tokens. It keeps the newest 1,000 registered clients, since registration is open.
 

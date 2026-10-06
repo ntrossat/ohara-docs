@@ -1,3 +1,7 @@
+---
+verified: 2026-10-06
+---
+
 # UI kit
 
 The components that make up Ohara's screens. Values reference the tokens in the [style guide](style-guide.md) and [`tokens.css`](tokens.css). The [mockups](mockups/) show them in context.
@@ -136,6 +140,12 @@ On a phone the menu opens from a button in the top bar, covers the page and stop
 Shown when the docs repository is private and the visitor isn't signed in. Logo top left. Bottom left: status line, display headline "Sign in to read the docs", one sentence, primary button "Sign in with GitHub". Mockup: [`SignIn.dc.html`](mockups/SignIn.dc.html).
 
 When a signed-in user can't read the repository, the same layout says "You don't have access", names their login and the repository, and offers a secondary "Sign out" button.
+
+### Connect a coding assistant
+
+Shown after GitHub sign-in when a coding assistant asks for access through MCP. Same layout as sign in: status line `signed in as <login>`, display headline "Connect <client>?", then one sentence naming the repository, the login it acts as, and the address it returns to in inline code, and a warning to connect only an app the user started. A primary "Connect" button and a secondary "Cancel" button sit side by side, 12px apart. Both are disabled while the answer is sent.
+
+When the request has expired, the same layout says "This request expired" and asks the user to connect again from their coding assistant.
 
 ### Setup
 
