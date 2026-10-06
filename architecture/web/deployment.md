@@ -22,11 +22,17 @@ OHARA_URL=https://docs.acme.com docker compose up -d
 
 | Setting | Value |
 |---|---|
-| `OHARA_URL` | The address people use to open Ohara. The only environment variable |
+| `OHARA_URL` | The address people use to open Ohara. The only environment variable. It can include a path, such as `https://acme.com/docs` |
 | Port | `8000` |
 | Data | The `ohara-data` volume, mounted at `/data` |
 
 The image builds the React website and serves it from the FastAPI server, next to the API and the MCP server. Everything else, including the GitHub App and the docs repository, is set up from the setup page on first launch. See [Configure a docs repository](../../documentation/docs-repository.md).
+
+## Serve under a path
+
+When `OHARA_URL` has a path, such as `https://acme.com/docs`, Ohara serves the website, the API, and the MCP server under it, and redirects the rest of the host there. OAuth discovery for MCP clients stays at the root of the host, where clients look for it: `/.well-known/oauth-authorization-server/docs` and `/.well-known/oauth-protected-resource/docs/mcp`.
+
+The GitHub App's callback and webhook URLs include the path. To move an existing instance to a path, update them in the app's settings on GitHub: the callback URL to `OHARA_URL/api/auth/callback` and the webhook URL to `OHARA_URL/api/github/webhook`. MCP clients connect again at `OHARA_URL/mcp`.
 
 ## HTTPS
 
