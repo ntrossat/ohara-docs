@@ -1,4 +1,5 @@
 ---
+covers: [ntrossat/ohara:backend/ohara/mcp_server.py, ntrossat/ohara:backend/ohara/oauth.py]
 verified: 2026-10-06
 ---
 

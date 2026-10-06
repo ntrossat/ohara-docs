@@ -1,4 +1,5 @@
 ---
+covers: [ntrossat/ohara:backend/ohara/docs.py, ntrossat/ohara:backend/ohara/freshness.py, ntrossat/ohara:backend/ohara/main.py]
 verified: 2026-10-06
 ---
 
