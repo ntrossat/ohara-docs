@@ -46,13 +46,13 @@ See [Track freshness](docs-repository.md#track-freshness) for what makes a page 
 
 ## Propose changes
 
-An assistant sends a title, a description, and the full new Markdown of each page, front matter included. A page path can be an existing page or a new one, such as `team/onboarding`.
+An assistant sends a title, a description, and the full new Markdown of each page, front matter included. A page path can be an existing page or a new one, such as `team/onboarding`. It also sends the project's repository name and active git branch, so every change from one code branch lands in one pull request.
 
 Ohara then:
 
 1. checks that the signed-in user, or the token, can write to the docs repository;
 2. sets each page's `verified` date to today;
-3. commits the pages on a new `ohara/…` branch and opens a pull request, signed "Proposed through Ohara by @login".
+3. commits the pages on the `project/branch` branch of the docs repository. If that branch already has an open pull request, the pages are added to it. Otherwise Ohara opens one, signed "Proposed through Ohara by @login".
 
 A human reviews and merges the pull request. Merging updates the website and verifies the pages.
 

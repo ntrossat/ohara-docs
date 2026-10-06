@@ -37,11 +37,17 @@ Each flag holds a hash of the page's file. When the page changes, the hash no lo
 
 ## Propose changes
 
-`propose_change` takes a title, a description, and the full Markdown of each page.
+`propose_change` takes a title, a description, and the full Markdown of each page. A change that comes from a code project also passes the project's repository name and its active git branch.
 
 1. Ohara checks that the caller is signed in and can write to the docs repository.
 2. It maps each path to a file: the existing file of that page, or a new `path.md`. Paths with empty parts or parts starting with `.` are refused.
 3. It sets `verified` to today in each page's front matter, keeping the rest as written.
-4. With the installation token, it creates a branch `ohara/<slug>-<random>` from the default branch, commits the files, and opens a pull request. The body ends with "Proposed through Ohara by @login".
+4. With the installation token, it commits the files on a docs branch:
+   - `<project>/<branch>` when the project and branch are given, such as `api/feature-billing`. Characters other than letters, digits, `_` and `-` become `-`. If that branch has an open pull request, the commits are added to it with a comment that holds the title and description, and Ohara returns that pull request.
+   - Otherwise `ohara/<slug>-<random>`.
+
+   A new branch starts from the default branch. A branch left from a closed pull request is reset to the default branch first, so it holds only the new change. Ohara then opens a pull request whose body ends with "Proposed through Ohara by @login".
+
+Each code branch therefore gets one docs pull request, however many commits it has.
 
 If GitHub refuses with `403`, the app lacks write permissions. An admin grants **Contents** and **Pull requests** write permissions in the app settings, then accepts them on the installation.
