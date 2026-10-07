@@ -2,41 +2,58 @@
 verified: 2026-10-07
 ---
 
-# Ohara Docs
+# Ohara
 
-Documentation for [Ohara](https://github.com/ntrossat/ohara): one central place for all enterprise knowledge.
+*One central place for all enterprise knowledge.*
+
+This repository holds everything the Ohara project knows: its product docs, its design, and its guidelines. AI keeps it up to date. A human approves every change.
 
 **AI-generated, human-controlled.**
 
 ---
 
-## Principle
+## Start here
 
-Every change to this repository is proposed by AI and approved by a human.
-
-- AI ingests, writes, and proposes changes as pull requests.
-- Humans review, approve, and merge.
-- This repository is the single source of truth.
-
----
-
-## Contents
-
-| Section | What it covers |
+| You want to | Read |
 |---|---|
-| [Ohara](apps/ohara/README.md) | What Ohara is and who it helps |
-| [How Ohara works](apps/ohara/concepts.md) | Concepts and glossary |
-| [Install](apps/ohara/install/README.md) | Installing, setup, HTTPS, paths, and operating |
-| [Configure](apps/ohara/configure/README.md) | The docs repository, code repositories, and access |
-| [Use](apps/ohara/use/README.md) | Coding assistants, the `/ohara:*` commands, and the team workflow |
-| [Developers](apps/ohara/developers/README.md) | Architecture, API, development, and customizing |
-| [Design](design/README.md) | Brand guidelines, style guide, and UI kit |
+| Understand what Ohara is and who it helps | [Ohara](apps/ohara/README.md) |
+| Learn the concepts and the vocabulary | [How Ohara works](apps/ohara/concepts.md) |
+| Run Ohara for your team | [Install](apps/ohara/install/README.md), then [Configure](apps/ohara/configure/README.md) |
+| Work with Ohara from a coding assistant | [Use](apps/ohara/use/README.md) |
+| Change Ohara's code | [Developers](apps/ohara/developers/README.md) |
+| Design for Ohara | [Design](design/README.md) |
 
 ---
 
-## Contributing
+## What's inside
 
-Open a pull request. Every change is reviewed before merge.
+```text
+.
+├── apps/
+│   └── ohara/     Product docs, synced from the ohara code repository
+└── design/        Brand, style guide, UI kit, design tokens, and logos
+```
+
+The folder tree is the site menu. Each page's first heading is its title.
+
+---
+
+## How this repository works
+
+1. **AI proposes.** Coding assistants and agents propose changes as pull requests, through Ohara's MCP server.
+2. **A human reviews.** Every pull request is read and approved before it merges.
+3. **Merging publishes.** Each merge to `main` rebuilds the site and verifies the pages it changes.
+
+Pages under `apps/` come from code repositories, which keep their own docs next to their code. Edit them there: Ohara syncs them here on each push.
+
+---
+
+## Contribute
+
+- **From a coding assistant:** connect Ohara and run `/ohara:update` after a code change, or `/ohara:ingest` to bring in docs from other tools.
+- **By hand:** open a pull request on this repository.
+
+Either way, a human approves the change before it merges.
 
 ---
 
