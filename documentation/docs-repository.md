@@ -22,9 +22,9 @@ Setup runs once, from the setup page Ohara shows on first launch.
 
    Open that address. Ohara shows the setup page.
 
-2. **Create the GitHub App.** Enter the organization that owns the docs repository, or leave the field empty for a personal account, then click **Create GitHub App**. GitHub shows the app's name and permissions. Confirm. You can rename the app before confirming. GitHub then sends you back to the setup page.
+2. **Create and install the GitHub App.** Enter the organization that owns the docs repository, or leave the field empty for a personal account, then click **Create GitHub App**. GitHub shows the app's name and permissions. Confirm. You can rename the app before confirming. GitHub then asks where to install it: pick the docs repository, and the code repositories whose changes should update the docs.
 
-3. **Install the app on the docs repository.** Click **Install on GitHub**. GitHub asks where to install it. Choose **Only select repositories** and pick the docs repository, and only that one. Setup needs exactly one repository. If you picked more, open the app's installation settings on GitHub (the gear next to **Installed**), keep only the docs repository, and save. GitHub sends you back to Ohara. If it doesn't, click **Check again** on the setup page.
+3. **Choose the docs repository.** GitHub sends you back to the setup page, which lists the repositories you picked. Choose the one that holds the docs and click **Use this repository**. With a single repository, Ohara skips this step. If GitHub doesn't send you back, click **Check again** on the setup page.
 
 4. **Done.** Ohara downloads the repository's default branch and opens the website.
 
@@ -84,12 +84,9 @@ Coding assistants see stale pages and the reasons through the [MCP server](codin
 
 ### Add code repositories
 
-To flag pages when code changes, Ohara must receive pushes from the repositories that `covers` names:
+To flag pages when code changes, and to merge docs pull requests with their code branch, Ohara must receive events from the code repositories. Install the app on them at setup, next to the docs repository, or add them later in the GitHub App's installation settings.
 
-1. Finish setup with only the docs repository.
-2. In the GitHub App's installation settings, add the code repositories to the same installation.
-
-Ohara only reads which files changed in those repositories. The app's permissions still apply to them, so it could write to them, but Ohara never does.
+Ohara only reads which files changed in those repositories and which of their pull requests closed. The app's permissions still apply to them, so it could write to them, but Ohara never does.
 
 ## Access
 
