@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-06
+verified: 2026-10-07
 ---
 
 # Ohara Docs
@@ -24,11 +24,12 @@ Every change to this repository is proposed by AI and approved by a human.
 
 | Section | What it covers |
 |---|---|
-| [Configure a docs repository](documentation/docs-repository.md) | Connect a repository, lay it out, track freshness, control access, and publish updates |
-| [Connect a coding assistant](documentation/coding-assistants.md) | Use the MCP server to read pages and propose changes |
-| [Authentication](architecture/web/authentication.md) | GitHub sign-in, MCP sign-in, access checks, and tokens |
-| [MCP server](architecture/web/mcp-server.md) | Tools, access, and how proposals become pull requests |
-| [Website deployment](architecture/web/deployment.md) | Running Ohara, its data, and how docs reach the website |
+| [Ohara](apps/ohara/README.md) | What Ohara is and who it helps |
+| [How Ohara works](apps/ohara/concepts.md) | Concepts and glossary |
+| [Install](apps/ohara/install/README.md) | Installing, setup, HTTPS, paths, and operating |
+| [Configure](apps/ohara/configure/README.md) | The docs repository, code repositories, and access |
+| [Use](apps/ohara/use/README.md) | Coding assistants, the `/ohara:*` commands, and the team workflow |
+| [Developers](apps/ohara/developers/README.md) | Architecture, API, development, and customizing |
 | [Design](design/README.md) | Brand guidelines, style guide, and UI kit |
 
 ---
