@@ -1,6 +1,7 @@
 ---
-verified: 2026-10-06
+verified: 2026-10-07
 ---
+
 
 # UI kit
 
@@ -47,6 +48,15 @@ Shows which repository the docs come from.
 - Value in JetBrains Mono 14px, `--ink`. Placeholder in `--muted`.
 - Label above it: Manrope 14px 600, 8px gap.
 - Focus: `--clay` border.
+
+### Repository list
+
+A single choice among repositories.
+
+- `--bg-2` panel, `--border`, radius `--radius-panel`, up to 336px tall, then it scrolls.
+- One 48px row per repository, padding 0 16px, separated by `--border`: a radio with `accent-color: var(--clay)`, 12px gap, the name in JetBrains Mono 14px, and a 13px lock icon after it when the repository is private.
+- Rows are `--muted`. Hover and the chosen row are `--ink`.
+- Above 6 repositories, an input filters the list by name.
 
 ### Menu search
 
@@ -149,7 +159,12 @@ When the request has expired, the same layout says "This request expired" and as
 
 ### Setup
 
-Shown on first launch. Two columns: on the left the status line `first launch`, the headline "Connect your docs repository" and one sentence on access. On the right, two steps separated by `--border` rules and numbered `01` and `02` in JetBrains Mono 12px. The current step's number is clay. Step one holds the organization input and the "Create GitHub App" button. Mockup: [`Setup.dc.html`](mockups/Setup.dc.html).
+Shown on first launch. Two columns: on the left the status line `first launch`, the headline "Connect your docs repository" and one sentence on access. On the right, two steps separated by `--border` rules and numbered `01` and `02` in JetBrains Mono 12px. The current step's number is clay.
+
+- **01 Create and install the GitHub App:** the organization input and the "Create GitHub App" button. Once the app exists and isn't installed yet, a primary "Install on GitHub" button and a secondary "Check again" button, 12px apart.
+- **02 Choose the docs repository:** once the app is installed, the repository list, then a primary "Use this repository" button and a secondary "Change repositories on GitHub" button.
+
+Mockup: [`Setup.dc.html`](mockups/Setup.dc.html).
 
 ### Empty and error states
 
