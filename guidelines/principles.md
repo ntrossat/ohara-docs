@@ -1,7 +1,7 @@
 ---
-order: 1
 verified: 2026-10-07
 ---
+
 
 # Principles
 
@@ -28,7 +28,7 @@ A product should be:
 
 ## Open source
 
-- Never commit anything specific to one company, deployment, or person: no hosting provider, domain, repository name, or credentials. Make it configurable instead.
+- Never commit anything specific to one company, deployment, or person: no hosting provider, domain, credentials, or names of repositories other than the project's own. Make it configurable instead.
 - Keep configuration minimal. A setting goes in the product's own setup page before it becomes an environment variable.
 - Anyone can self-host, on any platform, with as few required variables as possible.
 - New environment variables go in `.env.example`, with a comment that says what they do. Never commit `.env`.

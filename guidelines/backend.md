@@ -35,7 +35,7 @@ Python 3.14 with FastAPI, managed with `uv`.
 - Guard routes with dependencies (`Depends(...)`), not checks at the top of each handler.
 - Raise `HTTPException` with the right status and a message that says what to do.
 - Validate request bodies with Pydantic models.
-- Run blocking work with `asyncio.to_thread`.
+- Run slow blocking work with `asyncio.to_thread`: subprocesses, synchronous network calls, and work on many files. Short SQLite queries and single-file reads run inline.
 - Background work logs its exceptions and never crashes the server.
 - Never return a stack trace to a client. Errors reach it as a readable message.
 

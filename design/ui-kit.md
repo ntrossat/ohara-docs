@@ -3,6 +3,7 @@ verified: 2026-10-07
 ---
 
 
+
 # UI kit
 
 The components that make up Ohara's screens. Values reference the tokens in the [style guide](style-guide.md) and [`tokens.css`](tokens.css). The [mockups](mockups/) show them in context.
@@ -47,7 +48,7 @@ Shows which repository the docs come from.
 - Height 48px, padding 0 16px, `--bg-2` fill, `--border`, radius `--radius-panel`.
 - Value in JetBrains Mono 14px, `--ink`. Placeholder in `--muted`.
 - Label above it: Manrope 14px 600, 8px gap.
-- Focus: `--clay` border.
+- Focus: a 2px `--clay` outline with a 2px offset, as for every element.
 
 ### Repository list
 
@@ -60,7 +61,7 @@ A single choice among repositories.
 
 ### Menu search
 
-- Sits at the top of the menu. Height 40px, padding 0 12px, `--bg-2` fill, `--border`, radius `--radius-item`.
+- Sits at the top of the menu. Height 40px (44px on a phone), padding 0 12px, `--bg-2` fill, `--border`, radius `--radius-item`.
 - A 15px search icon, then the input in Manrope 14px. Placeholder "Search docs" in `--muted`.
 - A `⌘K` hint (`Ctrl K` off Mac) in JetBrains Mono 11px, hidden on a phone. The shortcut focuses the field, Escape clears it.
 - Typing filters the menu by page title and keeps the folders that lead to each match.
@@ -78,6 +79,7 @@ A single choice among repositories.
 
 - A row with a 12px chevron in a 28px column, then the folder's title in Manrope 14px 600, `--ink`. The title comes from the folder's index page, or from the folder name in sentence case.
 - Clicking a folder without an index page folds or unfolds it. A folder with an index page links to it: opening the page unfolds the folder, clicking it again while there folds it. The chevron always folds or unfolds.
+- When its index page is open, the folder row takes the menu item's Current style: `--bg-2` background, radius `--radius-item`.
 - The chevron points down when open and turns -90° when folded.
 - Children hang off a 1px `--line` guide line under the chevron, 18px in from the row. Nested pages are padded 14px from the line.
 
@@ -168,8 +170,11 @@ Mockup: [`Setup.dc.html`](mockups/Setup.dc.html).
 
 ### Empty and error states
 
-Same layout as the docs reader content. A Newsreader H1 says what's missing, and one sentence says how to fix it:
+A Newsreader H1 says what's missing, and one sentence says how to fix it. The docs states use the same layout as the docs reader content:
 
 - No root page: "Add an overview page". Create a `README.md` at the root of the repository.
 - Page not found: "This page doesn't exist". It may have been moved or renamed. Link to the overview.
+
+When the server can't be reached, nothing of the docs reader can load, so this state uses the sign-in layout:
+
 - Server unreachable: "Ohara can't be reached". Reload the page in a moment.

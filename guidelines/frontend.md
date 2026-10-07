@@ -1,7 +1,7 @@
 ---
-order: 3
 verified: 2026-10-07
 ---
+
 
 # Frontend
 
@@ -22,7 +22,7 @@ React with TypeScript, built with Vite. The backend serves the built files.
 ## Styles
 
 - One stylesheet. Its tokens mirror [`tokens.css`](../design/tokens.css) and the [style guide](../design/style-guide.md).
-- Use the tokens, never raw colors or sizes.
+- Use the tokens, never raw colors or sizes. A size with no token comes from the [UI kit](../design/ui-kit.md)'s component spec.
 - Class names in plain words for what an element is: `status-line`, `button secondary`.
 - Build every screen from the [UI kit](../design/ui-kit.md). A new component goes in the UI kit first.
 

@@ -1,7 +1,7 @@
 ---
-order: 6
 verified: 2026-10-07
 ---
+
 
 # Git
 
@@ -23,7 +23,7 @@ fix: let setup recover the repository selection and handle cancelled sign-ins
 
 ## CI and CD
 
-- CI runs on every pull request and every push to `main`. Pin each action to a version.
+- CI runs on every pull request and every push to `main`. Pin each action to an exact version (`actions/checkout@v7.0.1`), never a major tag or a branch.
 - Workflows get the least permissions they need (`contents: read` by default).
 - CD releases once CI passes on `main` and on version tags.
 - Hosting details live in repository variables and secrets, never in the workflow files.
