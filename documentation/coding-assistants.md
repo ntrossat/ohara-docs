@@ -1,6 +1,8 @@
 ---
-covers: [ntrossat/ohara:backend/ohara/mcp_server.py, ntrossat/ohara:backend/ohara/oauth.py]
-verified: 2026-10-06
+covers:
+  - ntrossat/ohara:backend/ohara/mcp_server.py
+  - ntrossat/ohara:backend/ohara/oauth.py
+verified: 2026-10-07
 ---
 
 # Connect a coding assistant
@@ -17,7 +19,7 @@ Any MCP client that supports the Streamable HTTP transport works the same way.
 
 | Docs repository | Sign-in |
 |---|---|
-| Public | None to read. Sign in to propose changes |
+| Public | None to read. Sign in to propose changes and check a repository |
 | Private | On first use, the assistant opens a GitHub sign-in in the browser. Only people who can read the repository get access |
 
 After GitHub sign-in, Ohara names the assistant and the address it returns to, and asks you to connect it. Connect only an assistant you started yourself: a sign-in link from someone else would give them your access.
@@ -32,6 +34,14 @@ The token needs read access to the docs repository, and write access to propose 
 
 Sign-in in the browser requires `OHARA_URL` to start with `https://`, or to be `localhost`. Otherwise only GitHub tokens work.
 
+## Set up a project
+
+In Claude Code, run `/ohara:init` in the project. The assistant first checks that the Ohara GitHub App is installed on the project's repository. If it is not, the assistant opens the app's installation settings on GitHub: an admin of the account adds the repository, and the assistant checks again. Without it, pushes don't flag stale pages and docs pull requests don't merge with the code. You can skip this step and connect the repository later.
+
+The app is private to the account that created it, so only that account's repositories can be connected.
+
+The assistant then adds the Ohara server to `.mcp.json`, writes an "Ohara instructions" section in `CLAUDE.md` with the guidelines and docs that apply and the workflow, and allows the read-only Ohara tools.
+
 ## Tools
 
 | Tool | What it does |
@@ -40,6 +50,7 @@ Sign-in in the browser requires `OHARA_URL` to start with `https://`, or to be `
 | `search` | Pages that contain every word of a query, best matches first, with why each may be stale |
 | `read_page` | A page's Markdown, owner, verified date, covered code, and why it may be stale. An empty path is the home page |
 | `stale_pages` | Pages that may be out of date, with the reasons |
+| `check_repository` | Whether the Ohara GitHub App is installed on a code repository, and where to add it if not |
 | `propose_change` | Opens pull requests with new or changed pages |
 
 See [Track freshness](docs-repository.md#track-freshness) for what makes a page stale.

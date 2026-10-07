@@ -1,6 +1,10 @@
 ---
-covers: [ntrossat/ohara:backend/ohara/main.py, ntrossat/ohara:backend/ohara/db.py, ntrossat/ohara:Dockerfile, ntrossat/ohara:docker-compose.yml]
-verified: 2026-10-06
+covers:
+  - ntrossat/ohara:backend/ohara/main.py
+  - ntrossat/ohara:backend/ohara/db.py
+  - ntrossat/ohara:Dockerfile
+  - ntrossat/ohara:docker-compose.yml
+verified: 2026-10-07
 ---
 
 # Website deployment
@@ -96,7 +100,7 @@ The website is a React app that reads everything from the API. The docs routes a
 | `GET /api/nav` | The menu, built from the folder tree |
 | `GET /api/page?path=` | One page's title, file, and Markdown |
 | `GET /api/files/*` | Images and other files from the docs repository |
-| `/api/setup/*` | GitHub App creation and installation. Locked once setup is done |
+| `/api/setup/*` | GitHub App creation and installation. Locked once setup is done, except `/api/setup/installed`, which redirects to the website when an admin returns from adding a repository to the installation |
 | `/api/auth/*` | Sign-in and sign-out. See [Authentication](authentication.md) |
 | `POST /api/github/webhook` | GitHub events that update the docs, flag code changes, and merge docs with code |
 | `/mcp` | The [MCP server](mcp-server.md) |

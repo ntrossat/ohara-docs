@@ -3,7 +3,7 @@ covers:
   - ntrossat/ohara:backend/ohara/mcp_server.py
   - ntrossat/ohara:backend/ohara/freshness.py
   - ntrossat/ohara:backend/ohara/docs.py
-verified: 2026-10-06
+verified: 2026-10-07
 ---
 
 # MCP server
@@ -22,9 +22,18 @@ Access mirrors the website: a public docs repository is open to everyone, a priv
 | `search` | The full-text index | Up to 20 pages containing every word of the query, with a snippet and stale reasons. Titles weigh more than text |
 | `read_page` | One page | Title, Markdown, owner, verified date, covered code, and stale reasons |
 | `stale_pages` | Every page | The stale pages and their reasons |
+| `check_repository` | The app's installation | Whether the app is installed on a code repository, and if not, why and the installation settings URL |
 | `propose_change` | The caller's write access | The pull request URLs |
 
 The search index is an SQLite FTS5 table in `ohara.db`, rebuilt on each sync and on startup, so search works even when GitHub is unreachable.
+
+## Check a repository
+
+`/ohara:init` calls `check_repository` with the project's repository (`owner/name`, from git remote), because flagging stale pages and merging docs with code only work on repositories the app is installed on. It needs a signed-in caller.
+
+1. Ohara reads its installation with the app's JWT. The app is private, so it is installed only on the account that owns it. A repository of another account can't be connected: the answer says so, with no URL.
+2. It lists the installation's repositories with the installation token. When the repository is among them (case does not matter, and a trailing `.git` is ignored), it is connected.
+3. Otherwise the answer holds the installation's settings page on GitHub (`html_url`). The assistant opens it in the browser, an admin of the account adds the repository, and the assistant checks again. GitHub then sends the admin to `/api/setup/installed`, which redirects to the website.
 
 ## Freshness
 
