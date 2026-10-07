@@ -1,7 +1,7 @@
 ---
-order: 4
 verified: 2026-10-07
 ---
+
 
 # Security
 
@@ -26,7 +26,7 @@ Our products hold keys and issue access tokens. Treat every change as security-r
 ## Requests
 
 - Every OAuth flow carries a random `state`, checked on return.
-- Only redirect to a path on the product's own site. Never to an address taken from the request.
+- Only redirect to a path on the product's own site, or to a redirect URL an OAuth client registered, after the user approves it. Never redirect to any other address taken from a request.
 - Verify webhook signatures before reading the payload.
 
 ## Untrusted content

@@ -1,7 +1,7 @@
 ---
-order: 2
 verified: 2026-10-07
 ---
+
 
 # Backend
 
@@ -19,7 +19,7 @@ Python 3.14 with FastAPI, managed with `uv`.
 
 - Type hints on every function signature. Use built-in generics and `X | None`.
 - Name things in plain words: `can_read`, `require_admin`.
-- Constants in `UPPER_CASE` at the top of the module, with units in the name or a comment (`CHECK_INTERVAL = 300`).
+- Constants in `UPPER_CASE` at the top of the module, with units in the name or a comment (`CHECK_INTERVAL = 300  # seconds`).
 - Lines up to about 140 characters. Match the surrounding code.
 
 ## State
