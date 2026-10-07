@@ -50,7 +50,7 @@ All state lives in the `/data` volume. Nothing is kept in process memory, apart 
 
 | Path | Content |
 |---|---|
-| `ohara.db` | SQLite database, readable only by the server: GitHub App credentials and the docs repository, sign-in sessions and their GitHub tokens, MCP clients and token hashes, cached access checks, code change flags, and the search index |
+| `ohara.db` | SQLite database, readable only by the server: GitHub App credentials and the docs repository, sign-in sessions and their GitHub tokens, MCP clients and token hashes, cached access checks, code change flags, the last sync of each code repository's docs, and the search index |
 | `docs/` | The latest snapshot of the docs repository |
 
 Records that expire, such as sessions and tokens, are removed once their time has passed.
@@ -67,13 +67,17 @@ To back up Ohara, back up the volume. `docker compose down -v` deletes it and re
 4. It extracts the tarball next to the current snapshot, then swaps the two folders. Readers never see a half-written snapshot.
 5. It rebuilds the search index.
 
-A `repository` event, sent when the repository's settings change, triggers the same update. It also refreshes the repository's visibility and default branch, so making the repository public or private changes who can read the website.
+A `repository` event, sent when the repository's settings change, triggers the same update. It also refreshes the repository's visibility and default branch, so making the repository public or private changes who can read the website. When the docs repository is made public (`publicized`), Ohara also syncs every code repository's docs again, which removes those of private code repositories.
 
-A `push` to the default branch of any other repository the app is installed on flags the pages that cover the changed code. See [Freshness](mcp-server.md#freshness).
+A `push` to the default branch of any other repository the app is installed on syncs its docs when they changed, then flags the pages that cover the changed code. See [Sync app docs](mcp-server.md#sync-app-docs) and [Freshness](mcp-server.md#freshness).
+
+A `push` to the docs repository that changes `apps/<name>/`, made by anyone but the app itself (`<app slug>[bot]`), syncs that code repository again, so hand edits are overwritten.
+
+An `installation_repositories` event, sent when repositories are added to or removed from the app's installation, syncs each added repository and deletes the synced folder of each removed one. GitHub sends it to every app, with no subscription.
 
 A `pull_request` event, sent when a pull request in another repository closes, merges or closes the docs pull request of the same branch. See [Merge with the code](mcp-server.md#merge-with-the-code).
 
-Ohara also updates the docs each time it starts. When `OHARA_URL` is `localhost` or a private address, the app has no webhook, so a restart is the only way to update and code changes are not flagged.
+Ohara also updates the docs each time it starts. Then it syncs the docs of each code repository the app is installed on that has never been synced, such as those added before this feature. When `OHARA_URL` is `localhost` or a private address, the app has no webhook, so a restart is the only way to update, and code changes are neither flagged nor synced.
 
 ## Update Ohara
 
@@ -98,10 +102,10 @@ The website is a React app that reads everything from the API. The docs routes a
 |---|---|
 | `GET /api/status` | Setup state, docs repository, and the signed-in user |
 | `GET /api/nav` | The menu, built from the folder tree |
-| `GET /api/page?path=` | One page's title, file, and Markdown |
+| `GET /api/page?path=` | One page's title, file, and Markdown. For a synced page under `apps/`, its `source`: the code repository, the file, and the edit URL on its default branch |
 | `GET /api/files/*` | Images and other files from the docs repository |
 | `/api/setup/*` | GitHub App creation and installation. Locked once setup is done, except `/api/setup/installed`, which redirects to the website when an admin returns from adding a repository to the installation |
 | `/api/auth/*` | Sign-in and sign-out. See [Authentication](authentication.md) |
-| `POST /api/github/webhook` | GitHub events that update the docs, flag code changes, and merge docs with code |
+| `POST /api/github/webhook` | GitHub events that update the docs, sync code repositories' docs, flag code changes, and merge docs with code |
 | `/mcp` | The [MCP server](mcp-server.md) |
 | `/.well-known/*`, `/register`, `/authorize`, `/token`, `/revoke` | OAuth for MCP clients. See [MCP sign-in](authentication.md#mcp-sign-in) |

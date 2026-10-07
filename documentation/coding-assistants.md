@@ -36,21 +36,23 @@ Sign-in in the browser requires `OHARA_URL` to start with `https://`, or to be `
 
 ## Set up a project
 
-In Claude Code, run `/ohara:init` in the project. The assistant first checks that the Ohara GitHub App is installed on the project's repository. If it is not, the assistant opens the app's installation settings on GitHub: an admin of the account adds the repository, and the assistant checks again. Without it, pushes don't flag stale pages and docs pull requests don't merge with the code. You can skip this step and connect the repository later.
+In Claude Code, run `/ohara:init` in the project. The assistant first checks that the Ohara GitHub App is installed on the project's repository. If it is not, the assistant opens the app's installation settings on GitHub: an admin of the account adds the repository, and the assistant checks again. Without it, pushes don't flag stale pages, docs pull requests don't merge with the code, and the project's own docs aren't synced. You can skip this step and connect the repository later.
 
 The app is private to the account that created it, so only that account's repositories can be connected.
 
-The assistant then adds the Ohara server to `.mcp.json`, writes an "Ohara instructions" section in `CLAUDE.md` with the guidelines and docs that apply and the workflow, and allows the read-only Ohara tools.
+Once connected, Ohara syncs the project's `docs/` folder into `apps/<repository name>/`. When the project keeps its docs elsewhere, the assistant offers to write a `.ohara.yml` that lists them. See [Sync docs from code repositories](docs-repository.md#sync-docs-from-code-repositories).
+
+The assistant then adds the Ohara server to `.mcp.json`, writes an "Ohara instructions" section in `CLAUDE.md` with the guidelines and docs that apply and the workflow, and allows the read-only Ohara tools. The workflow updates the project's synced docs in the same change as the code, and proposes every other page to Ohara.
 
 ## Tools
 
 | Tool | What it does |
 |---|---|
-| `list_pages` | Every page with its path and title |
+| `list_pages` | Every page with its path and title, and the source of synced pages |
 | `search` | Pages that contain every word of a query, best matches first, with why each may be stale |
-| `read_page` | A page's Markdown, owner, verified date, covered code, and why it may be stale. An empty path is the home page |
+| `read_page` | A page's Markdown, owner, verified date, covered code, why it may be stale, and for a synced page its source file. An empty path is the home page |
 | `stale_pages` | Pages that may be out of date, with the reasons |
-| `check_repository` | Whether the Ohara GitHub App is installed on a code repository, and where to add it if not |
+| `check_repository` | Whether the Ohara GitHub App is installed on a code repository and where to add it if not, and the paths of its synced docs |
 | `propose_change` | Opens pull requests with new or changed pages |
 
 See [Track freshness](docs-repository.md#track-freshness) for what makes a page stale.
@@ -61,9 +63,17 @@ An assistant sends a title, a description, and the full new Markdown of each pag
 
 Ohara then:
 
-1. checks that the signed-in user, or the token, can write to the docs repository;
+1. checks that the signed-in user, or the token, can write to the repositories the pages go to;
 2. sets each page's `verified` date to today;
 3. commits the pages on a branch of the docs repository. From a code branch, pages without a code owner in the docs repository's `CODEOWNERS` go to `project/branch`, and pages with one go to `project/branch-review`. Other proposals get their own `ohara/…` branch. If a branch already has an open pull request, the pages are added to it. Otherwise Ohara opens one, signed "Proposed through Ohara by @login".
+
+Synced pages, under `apps/`, follow their source:
+
+| Page | Where the change goes |
+|---|---|
+| From the current project | Refused: the assistant edits the source file in the project, in the same change as the code |
+| From another code repository | A pull request on that repository, at the source file, without the `source` field |
+| A new page under `apps/` | Refused: new pages go in the code repository's docs |
 
 Ohara returns the pull request links. The assistant puts them in the code pull request's description, so the code reviewers see the docs changes.
 
