@@ -6,7 +6,7 @@ verified: 2026-10-07
 
 *One central place for all enterprise knowledge.*
 
-This repository holds everything the Ohara project knows: its product docs, its design, and its guidelines. AI keeps it up to date. A human approves every change.
+This repository holds everything the Ohara project knows: its guidelines, its product docs, and its design. AI keeps it up to date. A human approves every change.
 
 **AI-generated, human-controlled.**
 
@@ -20,7 +20,7 @@ This repository holds everything the Ohara project knows: its product docs, its 
 | Learn the concepts and the vocabulary | [How Ohara works](apps/ohara/concepts.md) |
 | Run Ohara for your team | [Install](apps/ohara/install/README.md), then [Configure](apps/ohara/configure/README.md) |
 | Work with Ohara from a coding assistant | [Use](apps/ohara/use/README.md) |
-| Change Ohara's code | [Developers](apps/ohara/developers/README.md) |
+| Change Ohara's code | [Guidelines](guidelines/README.md), then [Developers](apps/ohara/developers/README.md) |
 | Design for Ohara | [Design](design/README.md) |
 
 ---
@@ -29,6 +29,7 @@ This repository holds everything the Ohara project knows: its product docs, its 
 
 ```text
 .
+├── guidelines/    Engineering rules every project follows
 ├── apps/
 │   └── ohara/     Product docs, synced from the ohara code repository
 └── design/        Brand, style guide, UI kit, design tokens, and logos
