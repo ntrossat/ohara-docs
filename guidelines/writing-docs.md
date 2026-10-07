@@ -1,5 +1,4 @@
 ---
-order: 7
 verified: 2026-10-07
 ---
 
@@ -15,7 +14,7 @@ verified: 2026-10-07
 
 - Plain Markdown. No HTML: the reader doesn't render it.
 - Each page starts with one `#` heading, its title. The folder tree is the menu, and a folder's `README.md` is its index page.
-- Front matter is optional: `order` sets the menu order, `owner` names who keeps the page true, `covers` links it to the code it describes.
+- Front matter is optional: `owner` names who keeps the page true, `covers` links it to the code it describes.
 - Link pages with relative paths to the `.md` file.
 - Give every code block a language.
 
