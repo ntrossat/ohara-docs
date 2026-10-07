@@ -1,6 +1,9 @@
 ---
-covers: [ntrossat/ohara:backend/ohara/sessions.py, ntrossat/ohara:backend/ohara/oauth.py, ntrossat/ohara:backend/ohara/github.py]
-verified: 2026-10-06
+covers:
+  - ntrossat/ohara:backend/ohara/sessions.py
+  - ntrossat/ohara:backend/ohara/oauth.py
+  - ntrossat/ohara:backend/ohara/github.py
+verified: 2026-10-07
 ---
 
 # Authentication
@@ -33,8 +36,10 @@ Everything else is created during setup and saved in `ohara.db` in the data volu
 Setup runs once, from the setup page on first launch.
 
 1. **Create the app.** Ohara sends GitHub a manifest with the app's callback URLs, webhook, events (`push`, `pull_request`, `repository`), and permissions (`contents: write`, `pull_requests: write`, `metadata: read`). The admin reviews it on GitHub and confirms.
-2. **Save the credentials.** GitHub redirects to `/api/setup/callback`. Ohara checks the `state` value it sent, then exchanges the code for the app's credentials: App ID, slug, client ID, client secret, webhook secret, and private key. GitHub returns them only once.
-3. **Install the app.** The admin installs the app on the docs repository, and only that one. GitHub redirects to `/api/setup/installed`. Ohara checks that the installation belongs to its app, saves the repository, and downloads the first snapshot of the docs.
+2. **Save the credentials.** GitHub redirects to `/api/setup/callback`. Ohara checks the `state` value it sent, then exchanges the code for the app's credentials: App ID, slug, client ID, client secret, webhook secret, and private key. GitHub returns them only once. Ohara then returns the admin to the setup page, which says which repository to pick.
+3. **Install the app.** The admin clicks **Install on GitHub** and installs the app on the docs repository, and only that one. GitHub redirects to `/api/setup/installed`. Ohara checks that the installation belongs to its app, saves the repository, and downloads the first snapshot of the docs.
+
+If the installation holds more than one repository, the setup page asks the admin to keep only the docs repository in the installation settings on GitHub. The manifest sets `setup_on_update`, so GitHub redirects to `/api/setup/installed` again after the change. The setup page's **Check again** button calls the same route without an installation ID: Ohara then lists its app's installations and uses the first. The app is private, so it has at most one installation, on the account that owns it.
 
 Once setup is done, the setup routes are locked. Code repositories can be added to the installation afterwards to [flag code changes](../../documentation/docs-repository.md#add-code-repositories).
 
@@ -51,6 +56,8 @@ Every instance creates its own app. GitHub App names are unique across all of Gi
    - reads the user's login and avatar;
    - creates a session and sets the `ohara_session` cookie (HttpOnly, SameSite=Lax, 30 days);
    - returns the user to the page they came from. Only paths on the same site are accepted.
+
+If the user cancels on GitHub, the callback gets an error and no code. Ohara checks `state`, then returns the user to the page they came from, still signed out. For an MCP sign-in, it returns `access_denied` to the client instead.
 
 Sessions are saved in `ohara.db`, so restarting Ohara keeps everyone signed in. A session ends after 30 days without use.
 

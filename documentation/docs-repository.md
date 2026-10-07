@@ -1,6 +1,9 @@
 ---
-covers: [ntrossat/ohara:backend/ohara/docs.py, ntrossat/ohara:backend/ohara/freshness.py, ntrossat/ohara:backend/ohara/main.py]
-verified: 2026-10-06
+covers:
+  - ntrossat/ohara:backend/ohara/docs.py
+  - ntrossat/ohara:backend/ohara/freshness.py
+  - ntrossat/ohara:backend/ohara/main.py
+verified: 2026-10-07
 ---
 
 # Configure a docs repository
@@ -19,9 +22,9 @@ Setup runs once, from the setup page Ohara shows on first launch.
 
    Open that address. Ohara shows the setup page.
 
-2. **Create the GitHub App.** Enter the organization that owns the docs repository, or leave the field empty for a personal account, then click **Create GitHub App**. GitHub shows the app's name and permissions. Confirm. You can rename the app before confirming.
+2. **Create the GitHub App.** Enter the organization that owns the docs repository, or leave the field empty for a personal account, then click **Create GitHub App**. GitHub shows the app's name and permissions. Confirm. You can rename the app before confirming. GitHub then sends you back to the setup page.
 
-3. **Install the app on the docs repository.** GitHub asks where to install it. Choose **Only select repositories** and pick the docs repository, and only that one. Setup needs exactly one repository: with more, it asks you to install again.
+3. **Install the app on the docs repository.** Click **Install on GitHub**. GitHub asks where to install it. Choose **Only select repositories** and pick the docs repository, and only that one. Setup needs exactly one repository. If you picked more, open the app's installation settings on GitHub (the gear next to **Installed**), keep only the docs repository, and save. GitHub sends you back to Ohara. If it doesn't, click **Check again** on the setup page.
 
 4. **Done.** Ohara downloads the repository's default branch and opens the website.
 
