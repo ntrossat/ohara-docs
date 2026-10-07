@@ -69,7 +69,7 @@ To back up Ohara, back up the volume. `docker compose down -v` deletes it and re
 
 A `repository` event, sent when the repository's settings change, triggers the same update. It also refreshes the repository's visibility and default branch, so making the repository public or private changes who can read the website. When the docs repository is made public (`publicized`), Ohara also syncs every code repository's docs again, which removes those of private code repositories.
 
-A `push` to the default branch of any other repository the app is installed on syncs its docs when they changed, then flags the pages that cover the changed code. See [Sync app docs](mcp-server.md#sync-app-docs) and [Freshness](mcp-server.md#freshness).
+A `push` to the default branch of any other repository the app is installed on syncs its docs when they or its `.ohara.yml` changed, then flags the pages that cover the changed code. See [Sync app docs](mcp-server.md#sync-app-docs) and [Freshness](mcp-server.md#freshness).
 
 A `push` to the docs repository that changes `apps/<name>/`, made by anyone but the app itself (`<app slug>[bot]`), syncs that code repository again, so hand edits are overwritten.
 
@@ -77,7 +77,7 @@ An `installation_repositories` event, sent when repositories are added to or rem
 
 A `pull_request` event, sent when a pull request in another repository closes, merges or closes the docs pull request of the same branch. See [Merge with the code](mcp-server.md#merge-with-the-code).
 
-Ohara also updates the docs each time it starts. Then it syncs the docs of each code repository the app is installed on that has never been synced, such as those added before this feature. When `OHARA_URL` is `localhost` or a private address, the app has no webhook, so a restart is the only way to update, and code changes are neither flagged nor synced.
+Ohara also updates the docs each time it starts. Then it syncs every code repository the app is installed on, so changes to the sync rules apply to all of them: repositories with a `.ohara.yml` are synced, and the folders of those without one are removed. It also removes the `apps/` folders that belong to no repository on the installation, such as folders left by another instance's app. When `OHARA_URL` is `localhost` or a private address, the app has no webhook, so a restart is the only way to update, and code changes are neither flagged nor synced.
 
 ## Update Ohara
 

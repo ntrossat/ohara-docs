@@ -36,11 +36,11 @@ Sign-in in the browser requires `OHARA_URL` to start with `https://`, or to be `
 
 ## Set up a project
 
-In Claude Code, run `/ohara:init` in the project. The assistant first checks that the Ohara GitHub App is installed on the project's repository. If it is not, the assistant opens the app's installation settings on GitHub: an admin of the account adds the repository, and the assistant checks again. Without it, pushes don't flag stale pages, docs pull requests don't merge with the code, and the project's own docs aren't synced. You can skip this step and connect the repository later.
+In Claude Code, run `/ohara:init` in the project. The assistant first checks that the Ohara GitHub App is installed on the project's repository. If it is not, the assistant opens the app's installation settings on GitHub: an admin of the account adds the repository, and the assistant checks again. Without it, pushes don't flag stale pages, docs pull requests don't merge with the code, and the project's own docs can't be synced. You can skip this step and connect the repository later.
 
 The app is private to the account that created it, so only that account's repositories can be connected.
 
-Once connected, Ohara syncs the project's `docs/` folder into `apps/<repository name>/`. When the project keeps its docs elsewhere, the assistant offers to write a `.ohara.yml` that lists them. See [Sync docs from code repositories](docs-repository.md#sync-docs-from-code-repositories).
+When the project keeps docs in its repository, the assistant offers to write a `.ohara.yml` that lists them, `docs/` by default. Only projects with that file have their docs synced into `apps/<repository name>/`. See [Sync docs from code repositories](docs-repository.md#sync-docs-from-code-repositories).
 
 The assistant then adds the Ohara server to `.mcp.json`, writes an "Ohara instructions" section in `CLAUDE.md` with the guidelines and docs that apply and the workflow, and allows the read-only Ohara tools. The workflow updates the project's synced docs in the same change as the code, and proposes every other page to Ohara.
 

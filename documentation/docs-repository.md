@@ -89,23 +89,30 @@ Coding assistants see stale pages and the reasons through the [MCP server](codin
 
 To flag pages when code changes, to merge docs pull requests with their code branch, and to sync a code repository's own docs, Ohara must receive events from the code repositories. Install the app on them at setup, next to the docs repository, or add them later in the GitHub App's installation settings. `/ohara:init` checks this for a project and opens those settings when the app is missing.
 
-Ohara reads which files changed in those repositories, which of their pull requests closed, and the docs it syncs. It writes to a code repository only to open the pull requests that coding assistants propose for its synced pages.
+Ohara reads which files changed in those repositories, which of their pull requests closed, and the docs of those that opt in to the sync. It writes to a code repository only to open the pull requests that coding assistants propose for its synced pages.
 
 ## Sync docs from code repositories
 
-A code repository can keep its own docs next to the code, so they change in the same pull request. Ohara syncs them into `apps/<repository name>/` of the docs repository, one way:
+A code repository can keep its own docs next to the code, so they change in the same pull request. When it opts in with a `.ohara.yml`, Ohara syncs them into `apps/<repository name>/` of the docs repository, one way:
 
-- On each push to the code repository's default branch that changes its docs, Ohara replaces the whole folder in one commit, `docs: sync owner/repo@sha`. Renames and deletions carry over.
-- When the app is added to a code repository, Ohara syncs it. When it is removed, Ohara deletes the folder.
+- On each push to the code repository's default branch that changes its docs or its `.ohara.yml`, Ohara replaces the whole folder in one commit, `docs: sync owner/repo@sha`. Renames and deletions carry over.
+- When the app is added to a code repository, Ohara syncs it. When it is removed, Ohara deletes the folder. On each start, Ohara checks every code repository on the installation again.
 - Ohara syncs Markdown files and images (`png`, `jpg`, `gif`, `svg`, `webp`) up to 1 MB each, and up to 500 files per repository. Hidden files and symbolic links are skipped.
 - Each synced page gets a `source` field in its front matter, such as `source: "acme/api:docs/billing.md"`. The website's edit link and coding assistants' proposals go to that file.
 - When the default branch is protected, Ohara opens an `ohara/sync-<repository name>` pull request instead of committing. Merge it as is.
 
-`apps/` belongs to the sync. Edit synced pages in their code repository: a hand edit in the docs repository is overwritten by the next sync, and a hand-made folder named after a connected repository is replaced by that repository's docs.
+`apps/` belongs to the sync. Edit synced pages in their code repository: a hand edit in the docs repository is overwritten by the next sync, and a hand-made folder named after a connected repository is replaced by that repository's docs, or removed when it has none.
 
 ### Choose what to sync
 
-Without a config file, Ohara syncs the code repository's `docs/` folder. To sync other paths, add `.ohara.yml` at the root of the code repository:
+A code repository opts in by adding `.ohara.yml` at its root. `/ohara:init` offers to write it, listing `docs/`:
+
+```yaml
+docs:
+  - docs
+```
+
+List other folders and files the same way:
 
 ```yaml
 docs:
@@ -115,14 +122,15 @@ docs:
 
 | `.ohara.yml` | Synced |
 |---|---|
-| Missing | `docs/` |
+| Missing | Nothing. Removing the file removes the synced folder |
+| Without a `docs` list, or empty | `docs/` |
 | `docs: [...]` | The listed folders and files |
 | `docs: []` | Nothing. The synced folder is removed |
 
 - The contents of a listed folder go to the root of `apps/<repository name>/`: `documentation/billing.md` becomes `apps/api/billing.md`.
 - A listed file goes to the root by its name: `README.md` becomes `apps/api/README.md`, the folder's page.
 - When two entries land on the same path, the first one in the list wins.
-- Absolute paths and paths with `..` are ignored. If the file isn't valid YAML, Ohara keeps the last synced copy and logs the error.
+- Absolute paths and paths with `..` are ignored. If the file isn't valid YAML, or isn't a mapping, Ohara keeps the last synced copy and logs the error.
 
 ### Access to synced docs
 

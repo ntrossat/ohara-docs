@@ -36,7 +36,7 @@ A page's `source` is only reported for files under `apps/`, so a page elsewhere 
 `/ohara:init` calls `check_repository` with the project's repository (`owner/name`, from git remote), because flagging stale pages, merging docs with code, and syncing app docs only work on repositories the app is installed on. It needs a signed-in caller.
 
 1. Ohara reads its installation with the app's JWT. The app is private, so it is installed only on the account that owns it. A repository of another account can't be connected: the answer says so, with no URL.
-2. It lists the installation's repositories with the installation token. When the repository is among them (case does not matter, and a trailing `.git` is ignored), it is connected. The answer then holds the paths of the last sync, or `docs` before the first one, the synced folder, and why the sync was skipped, if it was.
+2. It lists the installation's repositories with the installation token. When the repository is among them (case does not matter, and a trailing `.git` is ignored), it is connected. The answer then holds the paths of the last sync (none before the first one, or without a `.ohara.yml`), the synced folder, and why the sync was skipped, if it was.
 3. Otherwise the answer holds the installation's settings page on GitHub (`html_url`). The assistant opens it in the browser, an admin of the account adds the repository, and the assistant checks again. GitHub then sends the admin to `/api/setup/installed`, which redirects to the website.
 
 ## Sync app docs
@@ -44,9 +44,9 @@ A page's `source` is only reported for files under `apps/`, so a page elsewhere 
 `appdocs.sync` copies a code repository's docs into `apps/<repository name>/` of the docs repository. One sync runs at a time, so commits never race. See [Sync docs from code repositories](../../documentation/docs-repository.md#sync-docs-from-code-repositories) for the rules users see.
 
 1. With the installation token, Ohara reads the code repository. A private code repository with a public docs repository syncs nothing, so an earlier copy is removed.
-2. It reads `.ohara.yml` at the pushed commit (`appconfig.py`). Without it, the paths are `docs`. When the file isn't valid YAML, the sync stops and the last copy stays.
+2. It reads `.ohara.yml` at the pushed commit (`appconfig.py`). Without it, the repository hasn't opted in and nothing is synced. A file without a `docs` list syncs `docs`. When the file isn't valid YAML or isn't a mapping, the sync stops and the last copy stays.
 3. It lists the code repository's files with the recursive trees API, keeping regular files (not symbolic links) with a Markdown or image extension, up to 1 MB each and outside hidden folders. A missing commit or a truncated list stops the sync, so missing files are never taken for deleted ones. An empty repository has no files.
-4. It lays out the files under `apps/<repository name>/` (folder contents at the root, files by name, the first entry wins), up to 500, and downloads each blob. Markdown files get `source: "owner/repo:path"` in their front matter.
+4. It lays out the files under `apps/<repository name>/` (folder contents at the root, files by name, the first entry wins), up to 500, and downloads each blob. Markdown files get `source: "owner/repo:path"` in their front matter. With nothing to sync and no `apps/<repository name>/` folder in the snapshot, it stops there.
 5. It compares each file's Git blob sha with the docs repository's tree, creates blobs for the changed files, and deletes the files no longer synced. With no change, it stops.
 6. It commits the new tree on the default branch, `docs: sync owner/repo@sha`, and moves the branch. If GitHub refuses (`403`, `409` or `422`, such as a protected branch), it commits on `ohara/sync-<repository name>`, reset from the default branch, and opens a pull request there.
 
