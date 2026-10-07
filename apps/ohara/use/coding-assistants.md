@@ -1,5 +1,6 @@
 ---
 order: 1
+covers: [ntrossat/ohara:backend/ohara/mcp_server.py, ntrossat/ohara:backend/ohara/oauth.py]
 source: "ntrossat/ohara:docs/use/coding-assistants.md"
 ---
 

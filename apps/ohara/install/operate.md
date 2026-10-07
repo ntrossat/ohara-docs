@@ -1,4 +1,5 @@
 ---
+covers: [ntrossat/ohara:Dockerfile, ntrossat/ohara:docker-compose.yml, ntrossat/ohara:.github/workflows/*, ntrossat/ohara:backend/ohara/db.py, ntrossat/ohara:backend/ohara/store.py]
 source: "ntrossat/ohara:docs/install/operate.md"
 ---
 
