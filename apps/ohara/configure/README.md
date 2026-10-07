@@ -1,5 +1,4 @@
 ---
-order: 3
 source: "ntrossat/ohara:docs/configure/README.md"
 ---
 

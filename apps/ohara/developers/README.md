@@ -1,5 +1,4 @@
 ---
-order: 5
 covers: [ntrossat/ohara:backend/pyproject.toml, ntrossat/ohara:frontend/package.json]
 source: "ntrossat/ohara:docs/developers/README.md"
 ---
