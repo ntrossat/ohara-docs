@@ -1,3 +1,7 @@
+---
+verified: 2026-10-08
+---
+
 # Brand guidelines
 
 ## Name
@@ -6,7 +10,7 @@
 
 Tagline: **One central place for all enterprise knowledge.**
 
-Principle: **AI-generated, human-controlled.**
+Principle: **AI keeps your docs up to date. You approve every change.**
 
 ## Logo
 

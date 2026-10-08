@@ -4,9 +4,9 @@ verified: 2026-10-08
 
 # Ohara
 
-**One central place for all enterprise knowledge. AI-generated, human-controlled.**
+**One central place for all enterprise knowledge. AI keeps your docs up to date. You approve every change.**
 
-Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code. A person approves every change.
+Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code.
 
 Ohara is open source. It runs on your own servers, and your docs stay in your GitHub repository.
 
