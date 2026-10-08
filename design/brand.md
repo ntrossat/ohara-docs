@@ -68,7 +68,7 @@ Ohara speaks like a good senior engineer: clear, calm, and precise.
 - **Plain:** short sentences, common words, active voice.
 - **Direct:** say what happens. A button says "Sign in with GitHub", not "Continue".
 - **Calm:** no exclamation marks, no hype, no apologies. Errors say what went wrong and how to fix it.
-- **Human about AI:** AI proposes, humans approve. Never present AI output as final.
+- **Human about AI:** AI keeps your docs up to date. You approve every change. Never present AI output as final.
 
 | Instead of | Write |
 |---|---|

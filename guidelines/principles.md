@@ -12,9 +12,9 @@ A product should be:
 2. **Focused on a few core features.** Say no to the rest. A feature that isn't on the roadmap waits.
 3. **Simple and solid by design.** Fewer moving parts beat clever ones.
 
-## AI proposes. Humans approve.
+## AI keeps your docs up to date. You approve every change.
 
-- AI proposes, a human approves. Every change to code or docs goes through a pull request.
+- Every change to code or docs goes through a pull request that a human approves.
 - Never present AI output as final, in the product or in its copy.
 
 ## Simple by design
