@@ -1,7 +1,6 @@
 ---
-verified: 2026-10-07
+verified: 2026-10-08
 ---
-
 
 # Principles
 
@@ -13,7 +12,7 @@ A product should be:
 2. **Focused on a few core features.** Say no to the rest. A feature that isn't on the roadmap waits.
 3. **Simple and solid by design.** Fewer moving parts beat clever ones.
 
-## AI-generated, human-controlled
+## AI proposes. Humans approve.
 
 - AI proposes, a human approves. Every change to code or docs goes through a pull request.
 - Never present AI output as final, in the product or in its copy.
