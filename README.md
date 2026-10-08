@@ -8,6 +8,8 @@ verified: 2026-10-08
 
 Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code.
 
+![Docs, Drive, Confluence, Jira, and AI tools flow into Ohara, which delivers them to coding agents, the docs website, and chat](ohara-flow.webp)
+
 Ohara is open source. It runs on your own servers, and your docs stay in your GitHub repository.
 
 *You are reading Ohara now: this site runs on it.*
@@ -56,7 +58,7 @@ Assistants connect through MCP, the open standard that connects AI assistants to
 |---|---|
 | See what Ohara does and who it helps | [Overview](apps/ohara/README.md) |
 | Understand how it works | [How Ohara works](apps/ohara/concepts.md) |
-| Ask questions from claude.ai or ChatGPT | [Chat apps](chat-apps.md) |
+| Ask questions from claude.ai or ChatGPT | [Chat apps](documentation/chat-apps.md) |
 | Run Ohara for your team | [Install](apps/ohara/install/README.md), then [Configure](apps/ohara/configure/README.md) |
 | Connect a coding assistant | [Coding assistants](apps/ohara/use/coding-assistants.md) |
 | Set up the team workflow | [Team workflow](apps/ohara/use/team-workflow.md) |
