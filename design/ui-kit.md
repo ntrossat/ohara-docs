@@ -1,8 +1,6 @@
 ---
-verified: 2026-10-07
+verified: 2026-10-08
 ---
-
-
 
 # UI kit
 
@@ -89,12 +87,6 @@ On a phone, every menu row is at least 44px tall.
 
 JetBrains Mono 12px, lowercase, segments joined by ` / `. Parents are `--muted` links. The current page is `--ink`.
 
-### On this page
-
-- Label `on this page`, JetBrains Mono 12px, `--muted`.
-- A 1px `--line` rule on the left. Links are Manrope 14px `--muted`, padding 6px 0 6px 14px.
-- The current section is `--ink` with a 1px `--clay` rule.
-
 ### Code block
 
 - `--bg-2` panel, `--border`, radius `--radius-panel`.
@@ -142,10 +134,9 @@ See the [brand guidelines](brand.md#logo). In the top bar the mark is 30px with 
 |---|---|
 | Top bar | Logo, repository chip, then avatar, login and "Sign out" on the right. 72px tall, `--border` below |
 | Menu | Search, "Overview", then one foldable group per folder. 280px, `--border` on the right |
-| Content | Breadcrumb, H1, lead, page body, then "suggest a change on GitHub" and previous and next page links. Up to 720px, padding 48px 64px |
-| On this page | One link per H2. 220px |
+| Content | Breadcrumb, H1, lead, page body, then "suggest a change on GitHub" and previous and next page links. Fills the rest of the page frame, padding 48px 64px |
 
-On a phone the menu opens from a button in the top bar, covers the page and stops it from scrolling, and "On this page" is hidden. Mockups: [`Main.dc.html`](mockups/Main.dc.html), [`Mobile.dc.html`](mockups/Mobile.dc.html).
+On a phone the menu opens from a button in the top bar, covers the page and stops it from scrolling. Mockups: [`Main.dc.html`](mockups/Main.dc.html), [`Mobile.dc.html`](mockups/Mobile.dc.html).
 
 ### Sign in
 

@@ -1,3 +1,7 @@
+---
+verified: 2026-10-08
+---
+
 # Style guide
 
 The design tokens behind every Ohara screen. They are also available as CSS custom properties in [`tokens.css`](tokens.css).
@@ -49,8 +53,8 @@ All text pairs meet WCAG AA:
 | Code | JetBrains Mono | 14px | 400 | 1.7 | 0 |
 | Label | JetBrains Mono | 12px | 400 | 1.5 | 0 |
 
-- Labels are lowercase monospace, never all caps: `guidelines/`, `on this page`, `copy`.
-- Body text is at most 720px wide, about 72 characters per line.
+- Labels are lowercase monospace, never all caps: `guidelines/`, `previous`, `copy`.
+- Docs pages fill the space beside the menu, inside the page frame. Text on the sign-in and setup screens is at most 720px wide.
 - Turn off ligatures in code (`font-variant-ligatures: none`) so `->` shows as typed.
 - On a phone (under 860px), H1 is 44px, H2 is 27px, and body is 16px.
 
@@ -86,11 +90,10 @@ A 4px base. Use these steps: 4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 56, 64, 72, 9
 |---|---|
 | Top bar | full width, 72px tall (64px on a phone). Its logo and account line up with the page frame |
 | Menu | 280px |
-| Content | up to 720px |
-| On this page | 220px, 64px after the content. Hidden under 1280px |
+| Content | the rest of the page frame |
 | Page frame | up to 1440px, centered in the window |
 
-Under 860px, the menu moves behind a button in the top bar and "On this page" is hidden.
+Under 860px, the menu moves behind a button in the top bar.
 
 ## Motion
 
