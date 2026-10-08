@@ -6,9 +6,7 @@ verified: 2026-10-08
 
 **One central place for all enterprise knowledge. AI keeps your docs up to date. You approve every change.**
 
-<video src="resources/ohara-flow.mp4" autoplay controls muted playsinline width="100%">
-  <a href="resources/ohara-flow.mp4">Watch the Ohara flow</a>
-</video>
+![The Ohara flow](resources/ohara-flow.mp4)
 
 Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code.
 
