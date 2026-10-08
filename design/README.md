@@ -11,8 +11,8 @@ Everything that defines how Ohara looks and sounds.
 | File | What it is |
 |---|---|
 | [`tokens.css`](tokens.css) | The design tokens as CSS custom properties, ready to import |
-| [`logo.svg`](logo.svg) | The logo mark |
-| [`logo-wordmark.svg`](logo-wordmark.svg) | The logo mark with the Ohara wordmark |
+| [`logo.svg`](../resources/logo.svg) | The logo mark |
+| [`logo-wordmark.svg`](../resources/logo-wordmark.svg) | The logo mark with the Ohara wordmark |
 | [`mockups/`](mockups/) | Source files of the [Ohara Docs UI canvas](https://claude.ai/artifact/PoJSvY99xuGqMwVNbUxZtC) |
 
 The mockup files are design components for the canvas editor, so they don't render on their own in a browser.

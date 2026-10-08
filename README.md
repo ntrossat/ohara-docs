@@ -2,9 +2,13 @@
 verified: 2026-10-08
 ---
 
-# Ohara
+# Ohara - The Tree of Knowledge
 
 **One central place for all enterprise knowledge. AI keeps your docs up to date. You approve every change.**
+
+<video src="resources/ohara-flow.mp4" autoplay controls muted playsinline width="100%">
+  <a href="resources/ohara-flow.mp4">Watch the Ohara flow</a>
+</video>
 
 Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code.
 
@@ -71,8 +75,9 @@ This site is the Ohara project's own docs, served by Ohara. The folder tree is t
 |---|---|
 | `guidelines/` | Engineering rules every project follows |
 | `apps/ohara/` | Product docs, synced from the [ohara code repository](https://github.com/ntrossat/ohara) |
-| `design/` | Brand, style guide, UI kit, design tokens, and logos |
+| `design/` | Brand, style guide, UI kit, and design tokens |
 | `references/` | Reference material, such as the FastAPI user guide |
+| `resources/` | Logos, videos, and other media files |
 
 To contribute:
 

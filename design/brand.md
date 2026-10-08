@@ -23,8 +23,8 @@ The logo is `</>`, the sign of code, because Ohara treats documentation as code.
 
 | Version | File | Use |
 |---|---|---|
-| Mark | [`logo.svg`](logo.svg) | Favicon, app icon, small spaces |
-| Mark with wordmark | [`logo-wordmark.svg`](logo-wordmark.svg) | Top bar, sign-in, setup, anything where the name must be read |
+| Mark | [`logo.svg`](../resources/logo.svg) | Favicon, app icon, small spaces |
+| Mark with wordmark | [`logo-wordmark.svg`](../resources/logo-wordmark.svg) | Top bar, sign-in, setup, anything where the name must be read |
 
 The wordmark is "Ohara" in Manrope 600, letter-spacing 0.06em, with 10px between the mark and the word at a 30px mark.
 
