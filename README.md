@@ -88,7 +88,7 @@ Ohara imports docs from Confluence, Jira, Google Drive, GitHub, files, and URLs,
 3. **Approve the plan.** The assistant maps what already exists and proposes a structure.
 4. **Review and merge the pull requests.** It opens one per folder or topic. Each lists its sources and the secrets and personal data it removed.
 
-Importing needs write access to the docs repository. See [Chat apps](documentation/chat-apps.md) to connect claude.ai or ChatGPT.
+Importing needs write access to the docs repository. See [Configure your AI assistant](documentation/configure-your-ai-assistant.md) to connect claude.ai, ChatGPT, or another chat app.
 
 ## About this site
 
@@ -99,7 +99,7 @@ This site is the Ohara project's own docs, served by Ohara. The folder tree is t
 | `guidelines/` | Engineering rules every project follows |
 | `apps/ohara/` | Product docs, synced from the [ohara code repository](https://github.com/ntrossat/ohara) |
 | `design/` | Brand, style guide, UI kit, and design tokens |
-| `documentation/` | How-to guides, such as using Ohara from chat apps |
+| `documentation/` | Step-by-step guides: install, deploy, connect agents and chat apps, import docs |
 | `references/` | Reference material, such as the FastAPI user guide |
 
 ## License
