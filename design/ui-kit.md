@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-08
+verified: 2026-10-09
 ---
 
 # UI kit
@@ -95,6 +95,15 @@ JetBrains Mono 12px, lowercase, segments joined by ` / `. Parents are `--muted` 
 - Highlighting: keywords `--clay`, comments `--muted`, everything else `--ink`.
 
 Inline code: JetBrains Mono 14px, `--bg-2`, `--border`, padding 1px 6px, radius `--radius-code`.
+
+### Diagram
+
+A ` ```mermaid ` block, drawn as a diagram.
+
+- The code block's panel and header bar, with `mermaid` as the language. "copy" copies the Mermaid source.
+- The diagram is centered, padding 24px, and shrinks to fit the content width.
+- Nodes: `--surface-3` fill, `--clay` border, Manrope 14px `--ink`. Clusters: `--bg` fill, `--border`. Lines and arrows `--muted`, edge labels `--text` on `--bg-2`.
+- Mermaid loads only on a page that has a diagram. When the source doesn't parse, the block stays a code block.
 
 ### Quote
 
