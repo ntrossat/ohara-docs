@@ -63,7 +63,7 @@ The same rules apply on the website, in coding assistants, and in claude.ai and 
    - checks that the GitHub App is installed on the repository, and opens the app's settings on GitHub when it isn't, so you can add it. Ohara only reads the repository, and never writes to it;
    - finds the rules and docs that apply to the project;
    - adds the Ohara server to `.mcp.json`, so the whole team gets it;
-   - writes `.claude/rules/ohara.md`, which Claude Code loads like `CLAUDE.md`, with those pages and the workflow;
+   - writes `.claude/rules/ohara.md`, which Claude Code loads like `CLAUDE.md` (other agents: a section of `AGENTS.md`), with those pages and the workflow;
    - allows the read-only Ohara tools in `.claude/settings.json`, so only proposals ask for confirmation.
 
    Running it again is safe: it replaces its own earlier setup.
