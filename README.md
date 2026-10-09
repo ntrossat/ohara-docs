@@ -4,11 +4,13 @@ verified: 2026-10-08
 
 # Ohara - The Tree of Knowledge
 
-**One central place for all enterprise knowledge. AI keeps your docs up to date. You approve every change.**
+**One central place for all enterprise knowledge.**
+
+AI keeps your docs up to date. You approve every change.
 
 ![The Ohara flow](resources/ohara-flow.mp4)
 
-Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code.
+Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website, and asks questions or proposes updates from any chat or agent. Your assistants follow the approved rules when they write code, and propose a doc update each time they change the code.
 
 Ohara is open source. It runs on your own servers, and your docs stay in your GitHub repository.
 
