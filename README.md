@@ -10,8 +10,6 @@ verified: 2026-10-08
 
 Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code.
 
-![Docs, Drive, Confluence, Jira, and AI tools flow into Ohara, which delivers them to coding agents, the docs website, and chat](ohara-flow.webp)
-
 Ohara is open source. It runs on your own servers, and your docs stay in your GitHub repository.
 
 *You are reading Ohara now: this site runs on it.*
@@ -76,8 +74,9 @@ This site is the Ohara project's own docs, served by Ohara. The folder tree is t
 | `guidelines/` | Engineering rules every project follows |
 | `apps/ohara/` | Product docs, synced from the [ohara code repository](https://github.com/ntrossat/ohara) |
 | `design/` | Brand, style guide, UI kit, and design tokens |
+| `documentation/` | How-to guides, such as using Ohara from chat apps |
 | `references/` | Reference material, such as the FastAPI user guide |
-| `resources/` | Logos, videos, and other media files |
+| `resources/` | Logos, videos, and other media files, hidden from the menu by `.oharaignore` |
 
 To contribute:
 
