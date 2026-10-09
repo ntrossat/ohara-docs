@@ -4,11 +4,13 @@ verified: 2026-10-08
 
 # Ohara - The Tree of Knowledge
 
-**One central place for all enterprise knowledge. AI keeps your docs up to date. You approve every change.**
+**One central place for all enterprise knowledge.**
+
+AI keeps your docs up to date. You approve every change.
 
 ![The Ohara flow](resources/ohara-flow.mp4)
 
-Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website. Your assistants follow them when they write code, and propose a doc update each time they change the code.
+Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants. Your team reads them on a website, and asks questions or proposes updates from any chat or agent. Your coding assistants follow the approved rules when they write code, and propose a doc update each time they change the code.
 
 Ohara is open source. It runs on your own servers, and your docs stay in your GitHub repository.
 
@@ -16,54 +18,77 @@ Ohara is open source. It runs on your own servers, and your docs stay in your Gi
 
 ## Why teams use Ohara
 
-| Without Ohara | With Ohara |
-|---|---|
-| Docs are spread across Confluence, Google Drive, Jira, Slack, and GitHub. People can't find the answer, or find three that disagree. | Every doc and rule lives in one place. Ohara imports what you already have. |
-| Each developer sets up their AI assistant alone. The assistants follow different rules, and the code drifts apart. | Architects write the rules once. Every assistant, in every project, follows them. |
-| The docs fall behind the code. Nobody trusts them, so nobody reads them. | The assistant updates the docs in the same change as the code. Ohara flags the pages that fall behind. |
+- Every doc and rule lives in one place. Ohara imports what you already have.
+- Architects write the rules once. Every assistant, in every project, follows them.
+- The assistant updates the docs in the same change as the code. Ohara flags the pages that fall behind.
 
-## How it works: an example
+## Quick setup
 
-An engineer asks Claude Code to add refunds to the billing service.
+1. **Start Ohara.** Clone the code, set `OHARA_URL` in `.env`, and run it:
 
-1. **The assistant reads your rules first.** It looks up the guidelines and docs that apply in Ohara, such as your API style and your security rules.
-2. **It writes the code,** then checks it against those rules.
-3. **It updates the docs.** It sends the new billing pages to Ohara, which opens a pull request: a proposed change that waits for a person's review.
-4. **A person reviews the code and its docs together,** and merges both.
-5. **Everyone gets the new docs within seconds,** on the website and in their assistants.
+   ```bash
+   git clone https://github.com/ntrossat/ohara.git
+   cd ohara
+   cp .env.example .env
+   docker compose up -d
+   ```
 
-If someone later changes the billing code and not its docs, Ohara flags the pages that describe it. Assistants see the flag and propose the update.
+2. **Connect GitHub.** Open `OHARA_URL`. The setup page creates a GitHub App, installs it on your docs repository, and opens the website.
+3. **Connect your coding assistant,** then run `/ohara:init` in each project:
 
-## Where you use it
+   ```bash
+   claude mcp add --transport http ohara <OHARA_URL>/mcp
+   ```
 
-| Where | What you do |
-|---|---|
-| The website | Read and search the docs. Private docs ask you to sign in with GitHub. |
-| Claude Code and other coding assistants | Code with an assistant that follows your rules and proposes the doc updates. |
-| claude.ai and ChatGPT | Ask in plain language, such as "What are our security guidelines?", and import docs from Confluence or Google Drive. |
+See [Install](apps/ohara/install/README.md) for HTTPS, local runs, and the GitHub App's permissions.
 
-Assistants connect through MCP, the open standard that connects AI assistants to tools.
+## Authentication
 
-## Why you can trust it
+Ohara uses GitHub sign-in only. There are no Ohara accounts or passwords to manage.
 
-- **A person approves every change.** AI only proposes. Each change is a pull request that someone on your team reviews and merges. Ohara never merges on its own.
-- **Your docs stay in your GitHub repository,** as plain Markdown files with their full history.
-- **It runs on your servers.** One container, set up in about five minutes.
-- **Access follows GitHub.** People who can read the repository can read the docs. There are no other accounts to manage.
-- **Open source.** Apache-2.0 license.
+Ohara copies the access rights of the docs repository on GitHub:
 
-## Start here
+- **Public repository:** everyone can read the docs, without signing in.
+- **Private repository:** only people who can read the repository can read the docs.
+- **Proposing a change** needs write access to the repository.
 
-| You want to | Read |
-|---|---|
-| See what Ohara does and who it helps | [Overview](apps/ohara/README.md) |
-| Understand how it works | [How Ohara works](apps/ohara/concepts.md) |
-| Ask questions from claude.ai or ChatGPT | [Chat apps](documentation/chat-apps.md) |
-| Run Ohara for your team | [Install](apps/ohara/install/README.md), then [Configure](apps/ohara/configure/README.md) |
-| Connect a coding assistant | [Coding assistants](apps/ohara/use/coding-assistants.md) |
-| Set up the team workflow | [Team workflow](apps/ohara/use/team-workflow.md) |
-| Change Ohara's code | [Guidelines](guidelines/README.md), then [Developers](apps/ohara/developers/README.md) |
-| Design for Ohara | [Design](design/README.md) |
+To give someone access, add them to the repository on GitHub. To remove access, remove them there: they lose access within 5 minutes.
+
+The same rules apply on the website, in coding assistants, and in claude.ai and ChatGPT.
+
+## Add an existing code repository
+
+1. **Run `/ohara:init` in the project** from your coding assistant. It:
+
+   - checks that the GitHub App is installed on the repository, and opens the app's settings on GitHub when it isn't, so you can add it. Ohara only reads the repository, and never writes to it;
+   - finds the rules and docs that apply to the project;
+   - adds the Ohara server to `.mcp.json`, so the whole team gets it;
+   - writes an "Ohara instructions" section in `CLAUDE.md`, with those pages and the workflow;
+   - allows the read-only Ohara tools in `.claude/settings.json`, so only proposals ask for confirmation.
+
+   Running it again is safe: it replaces its own earlier setup.
+
+2. **Optional: keep the docs next to the code.** Add a `.ohara.yml` at the root of the repository:
+
+   ```yaml
+   docs:
+     - docs
+   ```
+
+   Ohara shows those docs under `apps/<repository name>/`, and syncs them on each push to the default branch.
+
+See [Code repositories](apps/ohara/configure/code-repositories.md) for the details.
+
+## Import existing documentation
+
+Ohara imports docs from Confluence, Jira, Google Drive, GitHub, files, and URLs, from a coding assistant or a chat app.
+
+1. **Connect the tool that holds the docs,** such as Confluence or Google Drive, next to Ohara.
+2. **Ask for the import.** In Claude Code, run `/ohara:ingest` and name the sources. In claude.ai or ChatGPT, ask, for example: "Import the Engineering space from Confluence into Ohara."
+3. **Approve the plan.** The assistant maps what already exists and proposes a structure.
+4. **Review and merge the pull requests.** It opens one per folder or topic. Each lists its sources and the secrets and personal data it removed.
+
+Importing needs write access to the docs repository. See [Chat apps](documentation/chat-apps.md) to connect claude.ai or ChatGPT.
 
 ## About this site
 
@@ -76,14 +101,6 @@ This site is the Ohara project's own docs, served by Ohara. The folder tree is t
 | `design/` | Brand, style guide, UI kit, and design tokens |
 | `documentation/` | How-to guides, such as using Ohara from chat apps |
 | `references/` | Reference material, such as the FastAPI user guide |
-| `resources/` | Logos, videos, and other media files |
-
-To contribute:
-
-- **From a coding assistant:** connect Ohara, then run `/ohara:update` after a code change, or `/ohara:ingest` to bring in docs from other tools.
-- **By hand:** open a pull request on this repository. Pages under `apps/` are edited in the ohara code repository, next to the code.
-
-Either way, a person approves the change before it merges. Each merge to `main` updates this site.
 
 ## License
 
