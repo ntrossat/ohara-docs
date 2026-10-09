@@ -76,7 +76,7 @@ This site is the Ohara project's own docs, served by Ohara. The folder tree is t
 | `design/` | Brand, style guide, UI kit, and design tokens |
 | `documentation/` | How-to guides, such as using Ohara from chat apps |
 | `references/` | Reference material, such as the FastAPI user guide |
-| `resources/` | Logos, videos, and other media files, hidden from the menu by `.oharaignore` |
+| `resources/` | Logos, videos, and other media files |
 
 To contribute:
 
