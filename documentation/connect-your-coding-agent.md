@@ -46,7 +46,7 @@ Open the project and run `/ohara:init`. The agent:
 - offers to write a `.ohara.yml`, when the project keeps its own docs, so Ohara shows them;
 - finds the rules and docs that apply to the project;
 - adds the Ohara server to `.mcp.json`;
-- writes an "Ohara instructions" section in `CLAUDE.md`, with those pages and the workflow;
+- writes `.claude/rules/ohara.md`, which Claude Code loads like `CLAUDE.md`, with those pages and the workflow;
 - allows the read-only Ohara tools in `.claude/settings.json`, so only proposals ask for confirmation;
 - offers to link the project's docs to the code, so Ohara flags them when the code changes.
 
