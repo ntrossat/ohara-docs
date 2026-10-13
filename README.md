@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-09
+verified: 2026-10-13
 ---
 
 # Ohara - The Tree of Knowledge
@@ -7,6 +7,8 @@ verified: 2026-10-09
 **One central place for all enterprise knowledge.**
 
 AI keeps your docs up to date. You approve every change.
+
+**Decide once. Every agent, developer, and project follows it in minutes.**
 
 ![The Ohara flow](resources/ohara-flow.mp4)
 
@@ -18,20 +20,19 @@ Ohara is open source. It runs on your own servers, and your docs stay in your Gi
 
 ## Why teams use Ohara
 
+- **Decisions reach the code in minutes.** Write an architecture or product rule once, and merge it. Every assistant, in every project, follows it on its next task: they read the rules from Ohara, not from copies in each repository.
 - **Every doc and rule lives in one place.** Ohara imports what you already have.
-- **Architects write the rules once.** Every assistant, in every project, follows them.
 - **The assistant updates the docs in the same change as the code.** Ohara flags the pages that fall behind.
 
 ## Quick setup
 
-1. **Start Ohara.** Clone the code, set `OHARA_URL` in `.env`, and run it:
+1. **Start Ohara.** Download `compose.yml` and run it:
 
    ```bash
-   git clone https://github.com/ntrossat/ohara.git
-   cd ohara
-   cp .env.example .env
-   docker compose up -d
+   curl -fsSLO https://raw.githubusercontent.com/ntrossat/ohara/main/compose.yml && docker compose up -d
    ```
+
+   It opens on `http://localhost:8000`. For a public address, set `OHARA_URL` in a `.env` file next to `compose.yml`.
 
 2. **Connect GitHub.** Open `OHARA_URL`. The setup page creates a GitHub App, installs it on your docs repository, and opens the website.
 3. **Connect your coding assistant,** then run `/ohara:init` in each project:
