@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-09
+verified: 2026-10-13
 ---
 
 # Ohara - The Tree of Knowledge
@@ -24,14 +24,13 @@ Ohara is open source. It runs on your own servers, and your docs stay in your Gi
 
 ## Quick setup
 
-1. **Start Ohara.** Clone the code, set `OHARA_URL` in `.env`, and run it:
+1. **Start Ohara.** Download `compose.yml` and run it:
 
    ```bash
-   git clone https://github.com/ntrossat/ohara.git
-   cd ohara
-   cp .env.example .env
-   docker compose up -d
+   curl -fsSLO https://raw.githubusercontent.com/ntrossat/ohara/main/compose.yml && docker compose up -d
    ```
+
+   It opens on `http://localhost:8000`. For a public address, set `OHARA_URL` in a `.env` file next to `compose.yml`.
 
 2. **Connect GitHub.** Open `OHARA_URL`. The setup page creates a GitHub App, installs it on your docs repository, and opens the website.
 3. **Connect your coding assistant,** then run `/ohara:init` in each project:
