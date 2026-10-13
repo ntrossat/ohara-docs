@@ -8,6 +8,8 @@ verified: 2026-10-13
 
 AI keeps your docs up to date. You approve every change.
 
+**Decide once. Every agent, developer, and project follows it in minutes.**
+
 ![The Ohara flow](resources/ohara-flow.mp4)
 
 **Ohara keeps your docs and engineering rules in one place, for your team and for your AI assistants.** Your team reads them on a website, and asks questions or proposes updates from any chat or agent. Your coding assistants follow the approved rules when they write code, and propose a doc update each time they change the code.
@@ -18,8 +20,8 @@ Ohara is open source. It runs on your own servers, and your docs stay in your Gi
 
 ## Why teams use Ohara
 
+- **Decisions reach the code in minutes.** Write an architecture or product rule once, and merge it. Every assistant, in every project, follows it on its next task: they read the rules from Ohara, not from copies in each repository.
 - **Every doc and rule lives in one place.** Ohara imports what you already have.
-- **Architects write the rules once.** Every assistant, in every project, follows them.
 - **The assistant updates the docs in the same change as the code.** Ohara flags the pages that fall behind.
 
 ## Quick setup
