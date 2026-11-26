@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-09
+verified: 2026-11-26
 ---
 
 # Import existing docs
@@ -60,4 +60,4 @@ In Claude Code, run `/ohara:ingest`, then:
 
 ## Next
 
-- Reference: [Team workflow](../apps/ohara/use/team-workflow.md)
+- Reference: [Team workflow](../repositories/ohara/use/team-workflow.md)
