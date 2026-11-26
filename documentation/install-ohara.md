@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-09
+verified: 2026-11-26
 ---
 
 # Install Ohara
@@ -57,4 +57,4 @@ To move to a real address later, start over with `make init`, which removes the 
 
 - [Deploy to production](deploy.md)
 - [Connect your coding agent](connect-your-coding-agent.md)
-- Reference: [Install](../apps/ohara/install/README.md)
+- Reference: [Install](../repositories/ohara/install/README.md)

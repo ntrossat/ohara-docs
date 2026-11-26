@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-13
+verified: 2026-11-26
 ---
 
 # Ohara - The Tree of Knowledge
@@ -41,7 +41,7 @@ Ohara is open source. It runs on your own servers, and your docs stay in your Gi
    claude mcp add --transport http ohara <OHARA_URL>/mcp
    ```
 
-See [Install](apps/ohara/install/README.md) for HTTPS, local runs, and the GitHub App's permissions.
+See [Install](repositories/ohara/install/README.md) for HTTPS, local runs, and the GitHub App's permissions.
 
 ## Authentication
 
@@ -76,9 +76,9 @@ The same rules apply on the website, in coding assistants, and in claude.ai and 
      - docs
    ```
 
-   Ohara shows those docs under `apps/<repository name>/`, and syncs them on each push to the default branch.
+   Ohara shows those docs under `repositories/<repository name>/`, and syncs them on each push to the default branch.
 
-See [Code repositories](apps/ohara/configure/code-repositories.md) for the details.
+See [Code repositories](repositories/ohara/configure/code-repositories.md) for the details.
 
 ## Import existing documentation
 
@@ -98,7 +98,7 @@ This site is the Ohara project's own docs, served by Ohara. The folder tree is t
 | Folder | Holds |
 |---|---|
 | `guidelines/` | Engineering rules every project follows |
-| `apps/ohara/` | Product docs, synced from the [ohara code repository](https://github.com/ntrossat/ohara) |
+| `repositories/ohara/` | Product docs, synced from the [ohara code repository](https://github.com/ntrossat/ohara) |
 | `design/` | Brand, style guide, UI kit, and design tokens |
 | `documentation/` | Step-by-step guides: install, deploy, connect agents and chat apps, import docs |
 | `references/` | Reference material, such as the FastAPI user guide |

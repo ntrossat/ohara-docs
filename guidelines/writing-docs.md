@@ -1,12 +1,12 @@
 ---
-verified: 2026-10-07
+verified: 2026-11-26
 ---
 
 # Writing docs
 
 ## Where docs live
 
-- A code repository keeps the docs about itself in `docs/` and lists them in `.ohara.yml`. Ohara syncs them into `apps/<repo>/` here. Edit them in the code repository, in the same change as the code.
+- A code repository keeps the docs about itself in `docs/` and lists them in `.ohara.yml`. Ohara syncs them into `repositories/<repo>/` here. Edit them in the code repository, in the same change as the code.
 - Everything else (guidelines, design, team pages) lives in this repository. Change it through Ohara's `propose_change` or a pull request.
 - A code repository's `README.md` covers principles and features only. Architecture and setup go in its `docs/`.
 

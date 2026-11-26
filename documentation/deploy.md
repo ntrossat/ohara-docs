@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-09
+verified: 2026-11-26
 ---
 
 # Deploy to production
@@ -60,4 +60,4 @@ Read the logs with `docker compose logs -f`.
 ## Next
 
 - [Connect your coding agent](connect-your-coding-agent.md)
-- Reference: [Operate](../apps/ohara/install/operate.md)
+- Reference: [Operate](../repositories/ohara/install/operate.md)
