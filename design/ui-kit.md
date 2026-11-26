@@ -1,6 +1,7 @@
 ---
-verified: 2026-10-09
+verified: 2026-11-26
 ---
+
 
 # UI kit
 
@@ -83,6 +84,20 @@ A single choice among repositories.
 
 On a phone, every menu row is at least 44px tall.
 
+### Count
+
+The number of changes waiting for review, at the right end of the "Changes" menu item.
+
+- Pill, `--clay-soft` fill, `--link` text, 13px weight 600, at least 22px wide, padding 0 7px.
+- Hidden when nothing waits.
+
+### Badge
+
+Says what a change does to a file: `changed`, `new page`, `removed`.
+
+- Pill, `--clay-soft` fill, `--link` text, 13px weight 600, padding 2px 12px.
+- A 6px clay dot, 8px before the label.
+
 ### Breadcrumb
 
 JetBrains Mono 12px, lowercase, segments joined by ` / `. Parents are `--muted` links. The current page is `--ink`.
@@ -123,6 +138,34 @@ Manrope 15px. Header row weight 700 with a 2px `--line` bottom border. Cells pad
 - Label (`previous`, `next`) in JetBrains Mono 12px `--muted`, the page title in Newsreader 20px `--ink`.
 - "Next" is right-aligned.
 
+The list of changes uses the same panel, full width: the change's title, then a label with its number, who proposed it, and the date.
+
+### Change card
+
+One file of a change, shown as the page reads after it.
+
+- Card with `--border`, radius `--radius-card`, `--bg-2` fill, `--shadow-card`, 32px below.
+- Header bar: padding 12px 24px, bottom `--border`, `--tint` fill. The file path in JetBrains Mono 13px `--muted`, its folders joined by ` / `, and a badge on the right.
+- Body: padding 32px, the page rendered as in the docs reader. Its H1 steps down to the H2 size and its H2 to the H3 size, and the lead reads as body text, so the change's own title leads the screen.
+- A file that is not a page shows one sentence that sends to GitHub.
+
+### Change marks
+
+What a change removes and adds, inside the rendered page.
+
+| Mark | Style |
+|---|---|
+| Removed words | `--muted`, struck through in `--clay` |
+| Added words | `--clay-soft` background, `--ink`, padding 1px 4px, radius `--radius-code`. 0.3em after removed words |
+| Removed block | The whole block in `--muted`, struck through in `--clay` |
+| Added block | `--clay-soft` panel, radius `--radius-control`, padding 12px 16px, 16px wider than the text on each side |
+
+Words are marked in paragraphs, headings, lists and table cells. Code blocks and HTML show whole, as a removed block then an added one. A new page has no marks: its badge says `new page`.
+
+### Change note
+
+The description of a change, above its cards: `--soft` panel, radius `--radius-panel`, padding 20px 24px, 15px text.
+
 ### Status line
 
 A 8px clay dot, 12px gap, then JetBrains Mono 12px `--muted`: `acme/handbook is private`, `first launch`. Sits above a display headline.
@@ -142,10 +185,30 @@ See the [brand guidelines](brand.md#logo). In the top bar the mark is 30px with 
 | Region | Content |
 |---|---|
 | Top bar | Logo, repository chip, then avatar, login and "Sign out" on the right. 72px tall, `--border` below |
-| Menu | Search, "Overview", then one foldable group per folder. 280px, `--border` on the right |
+| Menu | Search, "Overview", "Changes" with its count, then one foldable group per folder. 280px, `--border` on the right |
 | Content | Breadcrumb, H1, lead, page body, then "suggest a change on GitHub" and previous and next page links. Fills the rest of the page frame, padding 48px 64px |
 
 On a phone the menu opens from a button in the top bar, covers the page and stops it from scrolling. Mockups: [`Main.dc.html`](mockups/Main.dc.html), [`Mobile.dc.html`](mockups/Mobile.dc.html).
+
+### Changes
+
+The open pull requests of the docs repository, in the docs reader's content region, at `/-/changes`.
+
+- H1 "Changes", then a lead that names the repository and says that approving a change merges it.
+- One page link panel per change, 12px apart, the latest change first.
+- Nothing to review: one sentence in place of the list.
+
+### Change
+
+One pull request, at `/-/changes/<number>`.
+
+- Breadcrumb `changes / #482`, the pull request's title as H1, then a lead: `proposed by <login> · <date>`, with `draft, ` before it for a draft.
+- The change note with the pull request's description, when it has one.
+- One change card per file.
+- A primary "Approve change" button and a secondary "View on GitHub" button, 12px apart. While the approval is sent, the primary button is disabled and says "Approving…".
+- A visitor who isn't signed in gets "Sign in to approve" as the primary button. A signed-in user without write access, or a draft, gets no primary button, and one `--muted` 14px sentence below says why.
+- Once approved, a notice replaces the buttons: "Approved and merged. The docs update in a moment.", with a link to the other changes. A change already merged or closed shows a notice in the same place.
+- When GitHub refuses the merge, a sentence in `--error` under the buttons gives GitHub's reason and sends to GitHub.
 
 ### Sign in
 
@@ -174,6 +237,7 @@ A Newsreader H1 says what's missing, and one sentence says how to fix it. The do
 
 - No root page: "Add an overview page". Create a `README.md` at the root of the repository.
 - Page not found: "This page doesn't exist". It may have been moved or renamed. Link to the overview.
+- Change not found: "This change doesn't exist". The repository has no pull request with this number. Link to the changes.
 
 When the server can't be reached, nothing of the docs reader can load, so this state uses the sign-in layout:
 
