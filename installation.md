@@ -1,6 +1,6 @@
 ---
 order: 1
-verified: 2026-11-25
+verified: 2026-11-26
 ---
 
 # Installation
@@ -63,4 +63,4 @@ The data volume keeps the settings, so there is no setup to redo.
 | Use Ohara from Claude Code or another coding agent | [Connect your coding agent](documentation/connect-your-coding-agent.md) |
 | Ask questions from claude.ai, ChatGPT, or another chat app | [Configure your AI assistant](documentation/configure-your-ai-assistant.md) |
 | Bring in docs from other tools | [Import existing docs](documentation/import-existing-docs.md) |
-| Look up every setting, HTTPS, and paths | [Install reference](apps/ohara/install/README.md) |
+| Look up every setting, HTTPS, and paths | [Install reference](repositories/ohara/install/README.md) |
