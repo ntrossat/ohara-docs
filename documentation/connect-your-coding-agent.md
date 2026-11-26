@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-09
+verified: 2026-11-26
 ---
 
 # Connect your coding agent
@@ -66,4 +66,4 @@ For each change, the agent then reads the rules and docs that apply, writes the 
 ## Next
 
 - [Configure your AI assistant](configure-your-ai-assistant.md) for claude.ai, ChatGPT, and other chat apps.
-- Reference: [Coding assistants](../apps/ohara/use/coding-assistants.md), [Team workflow](../apps/ohara/use/team-workflow.md), [Access](../apps/ohara/configure/access.md)
+- Reference: [Coding assistants](../repositories/ohara/use/coding-assistants.md), [Team workflow](../repositories/ohara/use/team-workflow.md), [Access](../repositories/ohara/configure/access.md)
