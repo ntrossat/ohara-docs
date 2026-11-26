@@ -1,5 +1,5 @@
 ---
-verified: 2026-10-09
+verified: 2026-11-26
 ---
 
 # Configure your AI assistant
@@ -68,4 +68,4 @@ Changes go to a pull request that a person reviews and merges.
 ## Next
 
 - [Import existing docs](import-existing-docs.md)
-- Reference: [Access](../apps/ohara/configure/access.md)
+- Reference: [Access](../repositories/ohara/configure/access.md)
