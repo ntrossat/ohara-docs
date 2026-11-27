@@ -1,6 +1,7 @@
 ---
-verified: 2026-10-09
+verified: 2026-11-27
 ---
+
 
 # UI kit
 
@@ -63,6 +64,8 @@ A single choice among repositories.
 - A 15px search icon, then the input in Manrope 14px. Placeholder "Search docs" in `--muted`.
 - A `⌘K` hint (`Ctrl K` off Mac) in JetBrains Mono 11px, hidden on a phone. The shortcut focuses the field, Escape clears it.
 - Typing filters the menu by page title and keeps the folders that lead to each match.
+- Once typing pauses, the pages that match by their text and not their title follow, under an "In the text" label in JetBrains Mono 13px, `--muted`. Each is a menu item: the page title, then up to two lines of the matching text in Manrope 13px, `--muted`. Opening one clears the search.
+- With no match by title or text: "No pages match “query”" in Manrope 14px, `--muted`.
 
 ### Menu item
 
@@ -146,6 +149,13 @@ See the [brand guidelines](brand.md#logo). In the top bar the mark is 30px with 
 | Content | Breadcrumb, H1, lead, page body, then "suggest a change on GitHub" and previous and next page links. Fills the rest of the page frame, padding 48px 64px |
 
 On a phone the menu opens from a button in the top bar, covers the page and stops it from scrolling. Mockups: [`Main.dc.html`](mockups/Main.dc.html), [`Mobile.dc.html`](mockups/Mobile.dc.html).
+
+### Change review
+
+Shown in the docs reader's content, for one change proposed to the docs repository.
+
+- Header: the change's title as H1, then one line with an avatar and who proposed it, in Manrope 15px: "Proposed by **ada** with Claude Code · 20 Nov 2026". The agent's name follows the login when the change came through a coding assistant.
+- Actions, in a bar that stays at the bottom of the window: one sentence on what approving does, then secondary buttons "See the code in api #482" (only when the change comes with a code pull request) and "View on GitHub", and the primary "Approve change".
 
 ### Sign in
 
