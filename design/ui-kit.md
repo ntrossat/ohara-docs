@@ -1,7 +1,6 @@
 ---
-verified: 2026-11-26
+verified: 2026-11-27
 ---
-
 
 # UI kit
 
@@ -88,14 +87,14 @@ On a phone, every menu row is at least 44px tall.
 
 The number of changes waiting for review, at the right end of the "Changes" menu item.
 
-- Pill, `--clay-soft` fill, `--link` text, 13px weight 600, at least 22px wide, padding 0 7px.
+- Pill, `--clay-soft` fill, `#9a3412` text (`--link` is too light on this fill), 13px weight 600, at least 22px wide, padding 0 7px.
 - Hidden when nothing waits.
 
 ### Badge
 
 Says what a change does to a file: `changed`, `new page`, `removed`.
 
-- Pill, `--clay-soft` fill, `--link` text, 13px weight 600, padding 2px 12px.
+- Pill, `--clay-soft` fill, `#9a3412` text, 13px weight 600, padding 2px 12px.
 - A 6px clay dot, 8px before the label.
 
 ### Breadcrumb
@@ -142,12 +141,20 @@ The list of changes uses the same panel, full width: the change's title, then a 
 
 ### Change card
 
-One file of a change, shown as the page reads after it.
+One file of a change, shown as the page reads after it, with its unchanged sections folded.
 
 - Card with `--border`, radius `--radius-card`, `--bg-2` fill, `--shadow-card`, 32px below.
-- Header bar: padding 12px 24px, bottom `--border`, `--tint` fill. The file path in JetBrains Mono 13px `--muted`, its folders joined by ` / `, and a badge on the right.
+- Header bar: padding 12px 24px, bottom `--border`, `--tint` fill. The file path in JetBrains Mono 13px `--muted`, its folders joined by ` / ` and the file name in `--ink`, and a badge on the right.
 - Body: padding 32px, the page rendered as in the docs reader. Its H1 steps down to the H2 size and its H2 to the H3 size, and the lead reads as body text, so the change's own title leads the screen.
 - A file that is not a page shows one sentence that sends to GitHub.
+
+### Change fold
+
+A run of three or more unchanged blocks, folded inside a change card. The page's title and the headings right above a change stay visible.
+
+- A full-width button, 44px tall, padding 0 16px, 1px dashed `--line-strong` border, radius `--radius-control`, `--tint` fill, 20px below.
+- A 12px chevron, then "Unchanged: Button to Menu folder", naming the first and last sections it holds, in JetBrains Mono 13px `--muted`, then "Show" in `--ink` on the right.
+- Open, the chevron turns 90°, the label on the right says "Hide", and the folded text renders below.
 
 ### Change marks
 
@@ -158,13 +165,21 @@ What a change removes and adds, inside the rendered page.
 | Removed words | `--muted`, struck through in `--clay` |
 | Added words | `--clay-soft` background, `--ink`, padding 1px 4px, radius `--radius-code`. 0.3em after removed words |
 | Removed block | The whole block in `--muted`, struck through in `--clay` |
-| Added block | `--clay-soft` panel, radius `--radius-control`, padding 12px 16px, 16px wider than the text on each side |
+| Added block | `#fff5ee` panel with a 1px `#ffd9c2` border, radius `--radius-control`, padding 20px 24px. Inline code inside it is on `--bg-2` |
 
 Words are marked in paragraphs, headings, lists and table cells. Code blocks and HTML show whole, as a removed block then an added one. A new page has no marks: its badge says `new page`.
 
 ### Change note
 
-The description of a change, above its cards: `--soft` panel, radius `--radius-panel`, padding 20px 24px, 15px text.
+The description of a change, above its cards: `--soft` panel, radius `--radius-panel`, padding 20px 24px, 15px text, under the title "Why this changed" in `--ink` weight 600.
+
+### Approval bar
+
+The actions of a change, pinned 16px above the bottom of the window while the change is open.
+
+- Panel with `--border`, radius `--radius-card`, `--bg-2` fill, `--shadow-card`, padding 12px 12px 12px 24px.
+- One 14px sentence on the left, then a secondary "View on GitHub" button and the primary button, 12px apart. On a narrow screen the buttons wrap under the sentence.
+- The sentence says what approving does: "Approving merges this change into `<repository>`." When GitHub refuses the merge, GitHub's reason replaces it, in `--error`.
 
 ### Status line
 
@@ -202,13 +217,12 @@ The open pull requests of the docs repository, in the docs reader's content regi
 
 One pull request, at `/-/changes/<number>`.
 
-- Breadcrumb `changes / #482`, the pull request's title as H1, then a lead: `proposed by <login> · <date>`, with `draft, ` before it for a draft.
+- Breadcrumb `changes / #482`, the pull request's title as H1, then one row: a 32px avatar with the proposer's initial and "Proposed by **`<login>`** · `<date>`" ("Draft, proposed by" for a draft), a chip with the number of pages, and on the right a key of the two marks, "removed" and "added", when a page is changed.
 - The change note with the pull request's description, when it has one.
 - One change card per file.
-- A primary "Approve change" button and a secondary "View on GitHub" button, 12px apart. While the approval is sent, the primary button is disabled and says "Approving…".
-- A visitor who isn't signed in gets "Sign in to approve" as the primary button. A signed-in user without write access, or a draft, gets no primary button, and one `--muted` 14px sentence below says why.
-- Once approved, a notice replaces the buttons: "Approved and merged. The docs update in a moment.", with a link to the other changes. A change already merged or closed shows a notice in the same place.
-- When GitHub refuses the merge, a sentence in `--error` under the buttons gives GitHub's reason and sends to GitHub.
+- The approval bar. Its primary button is "Approve change", with a check icon. While the approval is sent, it is disabled and says "Approving…".
+- A visitor who isn't signed in gets "Sign in to approve" as the primary button. A signed-in user without write access, or a draft, gets no primary button, and the bar's sentence says why.
+- Once approved, a notice replaces the bar: "Approved and merged. The docs update in a moment.", with a link to the other changes. A change already merged or closed shows a notice in the same place.
 
 ### Sign in
 
